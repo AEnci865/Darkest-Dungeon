@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Darkest Dungeon Estate Guide</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darkest Dungeon Estate Guide</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <h1>Darkest Dungeon Estate Guide</h1>
-    <nav>
-      <button id="tab-regions">Regions</button>
-      <button id="tab-bosses">Bosses</button>
-      <button id="tab-runs">Raids</button>
-      <button id="tab-provisions">Provisions</button>
-      <button id="tab-classes">Classes</button>
-      <button id="tab-quirks">Quirks</button>
-    </nav>
   </header>
 
   <main>
-    <section id="content"></section>
+    <section id="regions-section">
+      <h2>Regions & Teams</h2>
+      <div id="regions-container"></div>
+    </section>
+
+    <section id="bosses-section">
+      <h2>Bosses</h2>
+      <div id="bosses-container"></div>
+    </section>
+
+    <section id="runs-section">
+      <h2>Dungeon Runs</h2>
+      <div id="runs-container"></div>
+    </section>
+
+    <section id="provisions-section">
+      <h2>Provisions</h2>
+      <div id="provisions-container"></div>
+    </section>
   </main>
 
+  <footer>
+    <p>&copy; Darkest Dungeon Estate Guide</p>
+  </footer>
+
   <script src="Data.js"></script>
-  <script src="app.js"></script>
+  <script src="App.js"></script>
 </body>
 </html>
