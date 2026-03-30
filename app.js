@@ -1,111 +1,126 @@
-const content = document.getElementById("content");
+// Darkest Dungeon Estate Guide - App Logic
 
-// Tab buttons
-const tabs = {
-  "tab-regions": showRegions,
-  "tab-bosses": showBosses,
-  "tab-runs": showRuns,
-  "tab-provisions": showProvisions,
-  "tab-classes": showClasses,
-  "tab-quirks": showQuirks
-};
-
-for (let id in tabs) {
-  document.getElementById(id).addEventListener("click", () => {
-    setActiveTab(id);
-    tabs[id]();
+function createList(items) {
+  const ul = document.createElement('ul');
+  items.forEach(i => {
+    const li = document.createElement('li');
+    li.textContent = i;
+    ul.appendChild(li);
   });
+  return ul;
 }
 
-function setActiveTab(activeId) {
-  Object.keys(tabs).forEach(id => {
-    document.getElementById(id).classList.remove("active");
-  });
-  document.getElementById(activeId).classList.add("active");
-}
+// Render Regions & Teams
+function renderRegions() {
+  const container = document.getElementById('regions-container');
+  for (const region in REGIONS) {
+    const regionDiv = document.createElement('div');
+    regionDiv.classList.add('team');
+    const title = document.createElement('h3');
+    title.textContent = region.toUpperCase();
+    regionDiv.appendChild(title);
 
-// Default tab
-setActiveTab("tab-regions");
-showRegions();
-
-// --- DATA DISPLAY FUNCTIONS ---
-
-function showRegions() {
-  content.innerHTML = "";
-  for (let region in REGIONS) {
-    const sec = document.createElement("section");
-    sec.innerHTML = `<h2>${region.toUpperCase()}</h2>`;
     REGIONS[region].teams.forEach(team => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `<strong>${team.label}</strong><br>` + 
-        Object.entries(team)
-          .filter(([k]) => k !== "label")
-          .map(([rank, hero]) => {
-            return `Rank ${rank}: ${hero.main} (${hero.mS.join(", ")}) / ${hero.sub} (${hero.sS.join(", ")})`;
-          }).join("<br>");
-      sec.appendChild(div);
+      const t = document.createElement('div');
+      const lbl = document.createElement('label');
+      lbl.textContent = team.label;
+      t.appendChild(lbl);
+
+      for (let pos = 4; pos >= 1; pos--) {
+        if (team[pos]) {
+          const hero = document.createElement('p');
+          hero.textContent = `${team[pos].main} (${team[pos].mS.join(', ')}) | ${team[pos].sub} (${team[pos].sS.join(', ')})`;
+          t.appendChild(hero);
+        }
+      }
+
+      regionDiv.appendChild(t);
     });
-    content.appendChild(sec);
+
+    container.appendChild(regionDiv);
   }
 }
 
-function showBosses() {
-  content.innerHTML = "";
-  BOSSES.forEach(boss => {
-    const sec = document.createElement("section");
-    sec.innerHTML = `<h2>${boss.name} (${boss.region})</h2>
-      <p><strong>Tiers:</strong> ${boss.tiers}</p>
-      <p><strong>Teams:</strong></p>
-      <ul>${boss.teams.map(t => `<li>${t.label}: ${t.heroes}</li>`).join("")}</ul>
-      <p><strong>Mechanics:</strong></p>
-      <ul>${boss.mechanics.map(m => `<li>${m}</li>`).join("")}</ul>
-      <p><strong>Avoid:</strong></p>
-      <ul>${boss.avoid.map(a => `<li>${a}</li>`).join("")}</ul>`;
-    content.appendChild(sec);
+// Render Bosses
+function renderBosses() {
+  const container = document.getElementById('bosses-container');
+  BOSSES.forEach(b => {
+    const div = document.createElement('div');
+    div.classList.add('boss');
+
+    const name = document.createElement('h3');
+    name.textContent = `${b.name} - ${b.region}`;
+    div.appendChild(name);
+
+    div.appendChild(createList(b.mechanics));
+    div.appendChild(createList(b.avoid));
+
+    container.appendChild(div);
   });
 }
 
-function showRuns() {
-  content.innerHTML = "";
-  DD_RUNS.forEach(run => {
-    const sec = document.createElement("section");
-    sec.innerHTML = `<h2>${run.name}</h2>
-      <p><em>${run.subtitle}</em></p>
-      <p><strong>Team:</strong> ${run.team}</p>
-      <p>${run.desc}</p>
-      <p><strong>Key Tips:</strong></p>
-      <ul>${run.key.map(k => `<li>${k}</li>`).join("")}</ul>
-      <p><strong>Watch:</strong></p>
-      <ul>${run.watch.map(w => `<li>${w}</li>`).join("")}</ul>`;
-    content.appendChild(sec);
+// Render Dungeon Runs
+function renderRuns() {
+  const container = document.getElementById('runs-container');
+  DD_RUNS.forEach(r => {
+    const div = document.createElement('div');
+    div.classList.add('run');
+
+    const name = document.createElement('h3');
+    name.textContent = r.name;
+    div.appendChild(name);
+
+    const subtitle = document.createElement('p');
+    subtitle.textContent = r.subtitle;
+    div.appendChild(subtitle);
+
+    div.appendChild(createList(r.key));
+    div.appendChild(createList(r.watch));
+
+    container.appendChild(div);
   });
 }
 
-function showProvisions() {
-  content.innerHTML = "";
-  ["short","medium","long"].forEach(length => {
-    const sec = document.createElement("section");
-    sec.innerHTML = `<h2>${length.toUpperCase()} (${PROVISIONS[length].rooms})</h2>
-      <p>${PROVISIONS[length].note}</p>`;
-    for (let region in PROVISIONS[length].regions) {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `<strong>${region.toUpperCase()}</strong><br>` +
-        PROVISIONS[length].regions[region].map(p => `${p[0]} x${p[1]} - ${p[2]}`).join("<br>");
-      sec.appendChild(div);
+// Render Provisions
+function renderProvisions() {
+  const container = document.getElementById('provisions-container');
+  for (const tier in PROVISIONS) {
+    const tierDiv = document.createElement('div');
+    tierDiv.classList.add('provision');
+
+    const h3 = document.createElement('h3');
+    h3.textContent = `${tier.toUpperCase()} (${PROVISIONS[tier].rooms})`;
+    tierDiv.appendChild(h3);
+
+    const note = document.createElement('p');
+    note.textContent = PROVISIONS[tier].note;
+    tierDiv.appendChild(note);
+
+    for (const region in PROVISIONS[tier].regions) {
+      const regionList = document.createElement('div');
+      const rTitle = document.createElement('h4');
+      rTitle.textContent = region.toUpperCase();
+      regionList.appendChild(rTitle);
+
+      PROVISIONS[tier].regions[region].forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item[0]} x${item[1]} - ${item[2]}`;
+        regionList.appendChild(li);
+      });
+
+      tierDiv.appendChild(regionList);
     }
-    content.appendChild(sec);
-  });
+
+    container.appendChild(tierDiv);
+  }
 }
 
-function showClasses() {
-  content.innerHTML = "<ul>" + CLASSES.map(c => `<li>${c}</li>`).join("") + "</ul>";
+// Initialize App
+function init() {
+  renderRegions();
+  renderBosses();
+  renderRuns();
+  renderProvisions();
 }
 
-function showQuirks() {
-  content.innerHTML = "<h2>Positive Quirks</h2><ul>" + 
-    POS_QUIRKS.map(q => `<li>${q.name} - ${q.effect}</li>`).join("") + 
-    "</ul><h2>Negative Quirks</h2><ul>" + 
-    NEG_QUIRKS.map(q => `<li>${q.name} - ${q.effect}</li>`).join("") + "</ul>";
-}
+document.addEventListener('DOMContentLoaded', init);
