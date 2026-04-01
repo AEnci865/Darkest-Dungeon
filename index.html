@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Darkest Dungeon: Estate Master Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
 :root {
   --bg: #060404;
   --panel: #0d0b0b;
@@ -22,12 +25,14 @@
   --blight: #507a20;
   --holy: #c0a020;
   --eldritch: #6040a0;
+  --crimson: #8b1a1a;
+  --comet: #7050b0;
   --scrollbar: #3a2c18;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{overflow-x:hidden;width:100%;background:#060404 !important;}
 ::-webkit-scrollbar{width:6px;height:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--scrollbar);border-radius:3px;}
-body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:15px;min-height:100vh;background-image:radial-gradient(ellipse at 20% 0%,rgba(100,50,10,.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(60,10,10,.15) 0%,transparent 60%);}
+body{background:#060404;background:var(--bg);color:#c0b090;color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:15px;min-height:100vh;background-image:radial-gradient(ellipse at 20% 0%,rgba(100,50,10,.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(60,10,10,.15) 0%,transparent 60%);}
 .app{max-width:1200px;margin:0 auto;padding:20px;overflow-x:hidden;}
 header{text-align:center;padding:30px 20px 20px;border-bottom:1px solid var(--border);margin-bottom:24px;position:relative;}
 header::before,header::after{content:'\2726';color:var(--gold-dim);font-size:1.2rem;position:absolute;top:50%;transform:translateY(-50%);}
@@ -35,7 +40,7 @@ header::before{left:0;}header::after{right:0;}
 h1{font-family:'Cinzel Decorative',serif;font-size:clamp(1.2rem,3vw,2rem);color:var(--gold);text-shadow:0 0 40px rgba(197,160,89,.4);letter-spacing:6px;text-transform:uppercase;}
 .subtitle{font-style:italic;color:var(--text-dim);font-size:.9rem;margin-top:6px;letter-spacing:2px;}
 .nav-tabs{display:flex;overflow-x:auto;white-space:nowrap;gap:8px;margin-bottom:20px;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
-.nav-tab{background:var(--panel);border:1px solid var(--border);color:var(--text-dim);padding:10px 14px;cursor:pointer;font-family:'Cinzel Decorative',serif;font-size:.62rem;letter-spacing:1px;text-transform:uppercase;transition:all .2s;text-align:center;line-height:1.4;flex:0 0 auto;min-width:80px;}
+.nav-tab{background:#0d0b0b;background:var(--panel);border:1px solid #3a2c18;border:1px solid var(--border);color:var(--text-dim);padding:10px 14px;cursor:pointer;font-family:'Cinzel Decorative',serif;font-size:.62rem;letter-spacing:1px;text-transform:uppercase;transition:all .2s;text-align:center;line-height:1.4;flex:0 0 auto;min-width:80px;}
 .nav-tab:hover{border-color:var(--gold-dim);color:var(--text);}
 .nav-tab.active{background:linear-gradient(135deg,#1a1308,#0d0b0b);border-color:var(--gold);color:var(--gold);box-shadow:0 0 12px rgba(197,160,89,.2);}
 .nav-tab .icon{font-size:1.1rem;display:block;margin-bottom:4px;}
@@ -54,9 +59,17 @@ h1{font-family:'Cinzel Decorative',serif;font-size:clamp(1.2rem,3vw,2rem);color:
 .badge-pierce{color:#5090c0;border-color:#5090c0;background:rgba(80,144,192,.1);}
 .badge-prot{color:#809060;border-color:#809060;background:rgba(128,144,96,.1);}
 .badge-mark{color:#c05020;border-color:#c05020;background:rgba(192,80,32,.1);}
+.badge-crimson{color:var(--crimson);border-color:var(--crimson);background:rgba(139,26,26,.15);}
+.badge-comet{color:var(--comet);border-color:var(--comet);background:rgba(112,80,176,.15);}
+.badge-stress{color:#c08020;border-color:#c08020;background:rgba(192,128,32,.1);}
+.badge-endurance{color:#6090a0;border-color:#6090a0;background:rgba(96,144,160,.1);}
+.team-switcher{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+.team-switch-btn{padding:6px 16px;background:var(--panel);border:1px solid var(--border2);color:var(--text-dim);cursor:pointer;font-family:'Cinzel Decorative',serif;font-size:.6rem;letter-spacing:1px;text-transform:uppercase;transition:all .2s;}
+.team-switch-btn:hover{border-color:var(--gold-dim);color:var(--text);}
+.team-switch-btn.active{border-color:var(--gold);color:var(--gold);background:linear-gradient(135deg,#1a1308,#0d0b0b);box-shadow:0 0 8px rgba(197,160,89,.15);}
 .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
 .pos-label{font-size:.65rem;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
-.hero-card{background:var(--panel);border:1px solid var(--border2);padding:14px;transition:border-color .2s;}
+.hero-card{background:#0d0b0b;background:var(--panel);border:1px solid #2a2020;border:1px solid var(--border2);padding:14px;transition:border-color .2s;}
 .hero-card:hover{border-color:var(--border);}
 .hero-card.subbed{border-color:var(--eldritch);}
 .hero-name{font-family:'Cinzel Decorative',serif;font-size:.7rem;color:var(--gold);margin-bottom:10px;min-height:32px;line-height:1.4;}
@@ -69,6 +82,46 @@ h1{font-family:'Cinzel Decorative',serif;font-size:clamp(1.2rem,3vw,2rem);color:
 .tips-box h4{color:var(--gold-dim);font-size:.75rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
 .tips-box ul{list-style:none;}
 .tips-box li{font-size:.85rem;padding:3px 0;}
+.boss-card{background:var(--panel);border:1px solid var(--border2);border-left:3px solid var(--red-dim);margin-bottom:16px;}
+.boss-header{background:linear-gradient(90deg,rgba(122,21,21,.2),transparent);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.boss-name{font-family:'Cinzel Decorative',serif;font-size:.85rem;color:#dd4444;letter-spacing:2px;}
+.boss-region{font-size:.75rem;color:var(--text-dim);font-style:italic;}
+.boss-body{padding:16px;display:none;}
+.boss-body.open{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.boss-section h4{font-size:.75rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;border-bottom:1px solid var(--border2);padding-bottom:4px;}
+.boss-section ul{list-style:none;}
+.boss-section li{font-size:.85rem;padding:3px 0;}
+.boss-section li::before{content:'\2022 ';color:var(--red-dim);}
+.warn{color:var(--red);font-weight:600;}
+.team-rec{margin-top:12px;background:rgba(0,0,0,.3);padding:10px;font-size:.82rem;}
+.team-rec-label{font-size:.7rem;color:var(--text-dim);letter-spacing:1px;margin-bottom:4px;}
+.team-rec-heroes{color:var(--gold-dim);}
+.chevron{color:var(--text-dim);font-size:.8rem;transition:transform .2s;}
+.chevron.open{transform:rotate(90deg);}
+.dd-card{background:var(--panel);border:1px solid var(--border2);border-left:3px solid var(--red);margin-bottom:14px;padding:16px;}
+.dd-card-title{font-family:'Cinzel Decorative',serif;font-size:.8rem;color:var(--red);margin-bottom:8px;letter-spacing:2px;}
+.dd-team{margin:10px 0;padding:10px;background:rgba(0,0,0,.3);font-size:.85rem;}
+.dd-team-label{font-size:.7rem;color:var(--text-dim);margin-bottom:4px;letter-spacing:1px;}
+.dd-team-val{color:var(--gold-dim);}
+.dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:.85rem;margin-top:10px;}
+.dd-col h4{font-size:.72rem;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.dd-col ul{list-style:none;}
+.dd-col li{padding:2px 0;}
+.dd-col li::before{content:'\26a0 ';color:var(--red-dim);font-size:.7rem;}
+.prov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.prov-card{background:var(--panel);border:1px solid var(--border2);padding:16px;}
+.prov-card-title{font-family:'Cinzel Decorative',serif;font-size:.75rem;color:var(--gold);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border2);letter-spacing:1px;}
+.prov-table{width:100%;border-collapse:collapse;font-size:.82rem;}
+.prov-table th{color:var(--text-dim);font-size:.7rem;letter-spacing:1px;text-align:left;padding:4px 6px;border-bottom:1px solid var(--border2);font-style:italic;}
+.prov-table td{padding:5px 6px;border-bottom:1px solid rgba(58,44,24,.3);}
+.prov-table tr:last-child td{border:none;}
+.item-qty{color:var(--gold);text-align:right;font-weight:600;}
+.item-note{color:var(--text-dim);font-size:.75rem;font-style:italic;}
+.prov-rule{margin-top:14px;padding:10px;background:rgba(197,160,89,.04);border:1px solid var(--border);font-size:.82rem;font-style:italic;color:var(--text-dim);}
+.prov-rule strong{color:var(--gold-dim);}
+.prov-tabs{display:flex;gap:6px;margin-bottom:16px;}
+.prov-tab{padding:5px 14px;background:var(--panel);border:1px solid var(--border2);color:var(--text-dim);cursor:pointer;font-size:.75rem;letter-spacing:1px;transition:all .2s;}
+.prov-tab.active{border-color:var(--gold);color:var(--gold);}
 .roster-controls{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center;}
 .ctrl-btn{padding:7px 16px;background:var(--panel);border:1px solid var(--border);color:var(--text-dim);cursor:pointer;font-size:.78rem;letter-spacing:1px;transition:all .2s;font-family:'Crimson Pro',serif;}
 .ctrl-btn:hover{border-color:var(--gold-dim);color:var(--gold);}
@@ -78,6 +131,8 @@ select:focus,input:focus{outline:none;border-color:var(--gold-dim);}
 .roster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
 .roster-card{background:var(--panel);border:1px solid var(--border2);padding:12px;position:relative;transition:border-color .2s;}
 .roster-card:hover{border-color:var(--border);}
+.roster-card.dead{opacity:.4;filter:grayscale(1);}
+.roster-card.retired{border-style:dashed;border-color:var(--text-dim);}
 .rcard-name{font-family:'Cinzel Decorative',serif;font-size:.65rem;color:var(--gold);margin-bottom:4px;}
 .rcard-class{font-size:.8rem;color:var(--text-dim);font-style:italic;}
 .rcard-level{position:absolute;top:8px;right:8px;font-size:.7rem;color:var(--gold-dim);border:1px solid var(--border2);padding:1px 5px;}
@@ -94,12 +149,23 @@ select:focus,input:focus{outline:none;border-color:var(--gold-dim);}
 .form-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:10px;}
 .form-group{display:flex;flex-direction:column;gap:4px;}
 .form-label{font-size:.72rem;color:var(--text-dim);letter-spacing:1px;}
+.quirk-section{margin-bottom:24px;}
+.quirk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:10px;}
+.quirk-entry{background:var(--panel);border:1px solid var(--border2);padding:10px 14px;position:relative;}
+.quirk-entry-name{font-size:.88rem;margin-bottom:4px;}
+.quirk-entry.pos .quirk-entry-name{color:#80c060;}
+.quirk-entry.neg .quirk-entry-name{color:#c06060;}
+.quirk-entry-effect{font-size:.78rem;color:var(--text-dim);font-style:italic;}
+.quirk-keep-label{position:absolute;top:8px;right:8px;font-size:.62rem;padding:1px 5px;}
+.keep-yes{color:#80c060;border:1px solid rgba(64,96,48,.5);}
+.keep-no{color:#c06060;border:1px solid rgba(96,48,48,.5);}
+.keep-situational{color:var(--gold-dim);border:1px solid var(--border);}
 .estate-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:20px;}
 .estate-stat{background:var(--panel);border:1px solid var(--border2);padding:10px 14px;text-align:center;}
 .estate-stat-val{font-family:'Cinzel Decorative',serif;font-size:1.2rem;color:var(--gold);}
 .estate-stat-label{font-size:.68rem;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;margin-top:3px;}
 .estate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
-.building-card{background:var(--panel);border:1px solid var(--border2);padding:14px;transition:border-color .2s;}
+.building-card{background:#0d0b0b;background:var(--panel);border:1px solid #2a2020;border:1px solid var(--border2);padding:14px;transition:border-color .2s;}
 .building-card:hover{border-color:var(--border);}
 .building-card.maxed{border-color:var(--gold-dim);}
 .building-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
@@ -110,11 +176,12 @@ select:focus,input:focus{outline:none;border-color:var(--gold-dim);}
 .upgrade-row{display:flex;align-items:center;gap:8px;font-size:.78rem;}
 .upgrade-label{color:var(--text-dim);width:140px;flex-shrink:0;font-style:italic;}
 .upgrade-pips{display:flex;gap:4px;}
-.pip{width:18px;height:18px;border:1px solid var(--border2);background:var(--panel);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.pip{width:18px;height:18px;border:1px solid #2a2020;border:1px solid var(--border2);background:transparent;background:var(--panel,#0d0b0b);cursor:pointer;transition:all .15s;flex-shrink:0;display:inline-block;}
 .pip:hover{border-color:var(--gold-dim);}
-.pip.filled{background:var(--gold-dim);border-color:var(--gold);}
-.pip.maxpip{background:var(--gold);border-color:var(--gold-bright);box-shadow:0 0 6px rgba(197,160,89,.4);}
+.pip.filled{background:#8a6d38;background:var(--gold-dim);border-color:#c5a059;border-color:var(--gold);}
+.pip.maxpip{background:#c5a059;background:var(--gold);border-color:#e8c070;border-color:var(--gold-bright);box-shadow:0 0 6px rgba(197,160,89,.4);}
 .building-effect{font-size:.75rem;color:var(--text-dim);font-style:italic;border-top:1px solid var(--border2);padding-top:8px;margin-top:4px;line-height:1.5;}
+.building-cost{font-size:.72rem;color:var(--gold-dim);margin-top:4px;}
 .route-controls{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;margin-bottom:20px;padding:16px;background:var(--panel);border:1px solid var(--border2);}
 .route-summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-bottom:20px;}
 .route-stat{background:var(--panel);border:1px solid var(--border2);padding:12px;text-align:center;}
@@ -135,18 +202,20 @@ select:focus,input:focus{outline:none;border-color:var(--gold-dim);}
 .pill-high{color:var(--gold);border-color:var(--gold-dim);}
 .pill-medium{color:#80a050;border-color:#507030;}
 .pill-low{color:var(--text-dim);border-color:var(--border2);}
-.route-tip{margin-top:16px;padding:12px 16px;background:rgba(197,160,89,.04);border:1px solid var(--border);border-left:3px solid var(--gold-dim);font-size:.82rem;font-style:italic;color:var(--text-dim);}
-.data-panel{background:var(--panel);border:1px solid var(--border);padding:20px;margin-bottom:16px;}
-.data-panel h3{font-family:'Cinzel Decorative',serif;font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
-.data-panel p{font-size:.85rem;color:var(--text-dim);font-style:italic;margin-bottom:14px;line-height:1.6;}
-.import-area{width:100%;min-height:80px;background:#0a0808;border:1px solid var(--border2);color:var(--text);padding:10px;font-family:'Crimson Pro',serif;font-size:.82rem;resize:vertical;display:block;margin-bottom:10px;}
-.import-area:focus{outline:none;border-color:var(--gold-dim);}
-.btn-row{display:flex;gap:10px;flex-wrap:wrap;}
+.route-tip{margin-top:16px;padding:12px 16px;background:rgba(197,160,89,.04);border:1px solid var(--border);border-left:3px solid var(--gold-dim);font-size:.82rem;font-style:italic;color:var(--text-dim);}.data-panel{background:var(--panel);border:1px solid var(--border);padding:20px;margin-bottom:16px;}.data-panel h3{font-family:'Cinzel Decorative',serif;font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}.data-panel p{font-size:.85rem;color:var(--text-dim);font-style:italic;margin-bottom:14px;line-height:1.6;}.import-area{width:100%;min-height:80px;background:#0a0808;border:1px solid var(--border2);color:var(--text);padding:10px;font-family:'Crimson Pro',serif;font-size:.82rem;resize:vertical;display:block;margin-bottom:10px;}.import-area:focus{outline:none;border-color:var(--gold-dim);}.btn-row{display:flex;gap:10px;flex-wrap:wrap;}
 @media(max-width:700px){
   .nav-tabs{gap:6px;}
   .team-grid{grid-template-columns:repeat(2,1fr);}
+  .boss-body.open,.dd-grid{grid-template-columns:1fr;}
+  .route-controls{flex-direction:column;}
+  .route-summary{grid-template-columns:repeat(2,1fr);}
   .estate-grid{grid-template-columns:1fr;}
   .estate-summary{grid-template-columns:repeat(2,1fr);}
+  #quirk-columns{grid-template-columns:1fr !important;}
+  .boss-strat{grid-template-columns:1fr;}
+  .form-row{flex-direction:column;}
+  .upgrade-label{width:100px;}
+  header::before,header::after{display:none;}
   .app{padding:12px;}
 }
 </style>
@@ -155,73 +224,115 @@ select:focus,input:focus{outline:none;border-color:var(--gold-dim);}
 <div class="app">
 <header>
 <h1>Estate Master Guide</h1>
-<div class="subtitle">Darkest Dungeon — Expedition Intelligence System</div>
+<div class="subtitle">Darkest Dungeon &mdash; Expedition Intelligence System</div>
 </header>
-
 <nav class="nav-tabs" id="mainNav">
-<button class="nav-tab active" data-tab="ruins"><span class="icon">💀</span>Ruins</button>
-<button class="nav-tab" data-tab="weald"><span class="icon">🌿</span>Weald</button>
-<button class="nav-tab" data-tab="warrens"><span class="icon">🐷</span>Warrens</button>
-<button class="nav-tab" data-tab="cove"><span class="icon">🐟</span>Cove</button>
-<button class="nav-tab" data-tab="bosses"><span class="icon">⚔️</span>Bosses</button>
-<button class="nav-tab" data-tab="darkest"><span class="icon">🔥</span>Darkest</button>
-<button class="nav-tab" data-tab="provisions"><span class="icon">🎒</span>Provisions</button>
-<button class="nav-tab" data-tab="roster"><span class="icon">📜</span>Roster</button>
-<button class="nav-tab" data-tab="quirks"><span class="icon">🌀</span>Quirks</button>
-<button class="nav-tab" data-tab="estate"><span class="icon">🏰</span>Estate</button>
-<button class="nav-tab" data-tab="buildroute"><span class="icon">⚙️</span>Build Route</button>
-<button class="nav-tab" data-tab="trinkets"><span class="icon">💍</span>Trinkets</button>
-<button class="nav-tab" data-tab="data"><span class="icon">💾</span>Data</button>
+<button class="nav-tab active" data-tab="ruins"><span class="icon">&#128128;</span>Ruins</button>
+<button class="nav-tab" data-tab="weald"><span class="icon">&#127807;</span>Weald</button>
+<button class="nav-tab" data-tab="warrens"><span class="icon">&#128000;</span>Warrens</button>
+<button class="nav-tab" data-tab="cove"><span class="icon">&#128025;</span>Cove</button>
+<button class="nav-tab" data-tab="courtyard"><span class="icon">&#129415;</span>Courtyard</button>
+<button class="nav-tab" data-tab="farmstead"><span class="icon">&#9732;</span>Farmstead</button>
+<button class="nav-tab" data-tab="bosses"><span class="icon">&#9876;&#65039;</span>Bosses</button>
+<button class="nav-tab" data-tab="darkest"><span class="icon">&#128293;</span>Darkest</button>
+<button class="nav-tab" data-tab="provisions"><span class="icon">&#127920;</span>Provisions</button>
+<button class="nav-tab" data-tab="roster"><span class="icon">&#128220;</span>Roster</button>
+<button class="nav-tab" data-tab="quirks"><span class="icon">&#128302;</span>Quirks</button>
+<button class="nav-tab" data-tab="estate"><span class="icon">&#127963;&#65039;</span>Estate</button>
+<button class="nav-tab" data-tab="buildroute"><span class="icon">&#9881;&#65039;</span>Build Route</button>
+<button class="nav-tab" data-tab="data"><span class="icon">&#128190;</span>Data</button>
 </nav>
 
-<!-- Ruins -->
+<!-- RUINS -->
+
 <div id="tab-ruins" class="tab-pane active">
 <div class="region-header"><div class="section-title" style="margin:0;border:none;">The Ruins</div><div class="focus-badges"><span class="badge badge-holy">Holy</span><span class="badge badge-blight">Blight</span></div></div>
-<div class="section-sub">Undead enemies are immune to bleed. Prioritize Holy damage and Blight. Stress generation is moderate but constant.</div>
+<div class="section-sub">Undead enemies are immune to Bleed. Prioritize Holy damage and Blight. Stress generation is moderate but constant.</div>
 <div class="team-grid" id="ruins-team"></div>
-<div id="ruins-synergy" class="tips-box"><h4>Team Quirk Synergy</h4><div id="ruins-synergy-content">Loading...</div></div>
-<div class="tips-box"><h4>Region Intelligence</h4><ul><li>Undead are IMMUNE to bleed. Use Blight and Holy exclusively.</li><li>Skeletons can self-resurrect once. Overkill with blight DoT to prevent this.</li><li>Bone Rabble should be cleared fast - they swarm and stun-lock backliners.</li><li>Holy Water on Ruins curios prevents most negative outcomes.</li></ul></div>
+<div class="tips-box"><h4>Region Intelligence</h4><ul><li>Undead are IMMUNE to bleed. Use Blight and Holy exclusively.</li><li>Skeletons can self-resurrect once. Overkill with blight DoT to prevent this.</li><li>Bone Rabble should be cleared fast - they swarm and stun-lock backliners.</li><li>Holy Water on Ruins curios prevents most negative outcomes.</li><li>Courtyard events can spawn Pestilent variants - bring extra antivenom.</li></ul></div>
 </div>
 
-<!-- Weald -->
+<!-- WEALD -->
+
 <div id="tab-weald" class="tab-pane">
 <div class="region-header"><div class="section-title" style="margin:0;border:none;">The Weald</div><div class="focus-badges"><span class="badge badge-bleed">Bleed</span><span class="badge badge-mark">Mark</span><span class="badge badge-prot">Prot Strip</span></div></div>
 <div class="section-sub">Enemies often have high protection. Brigands hit hard from any position. Fungal enemies cause disease - bring more food.</div>
 <div class="team-grid" id="weald-team"></div>
-<div id="weald-synergy" class="tips-box"><h4>Team Quirk Synergy</h4><div id="weald-synergy-content">Loading...</div></div>
-<div class="tips-box"><h4>Region Intelligence</h4><ul><li>Brigand Matchman - kill before he summons reinforcements. Highest priority target.</li><li>Fungal Scratcher causes Infected - food consumption +33%. Bring 8-10 food on medium.</li><li>Bleed + Mark synergy strong with Bounty Hunter and Hellion.</li></ul></div>
+<div class="tips-box"><h4>Region Intelligence</h4><ul><li>Brigand Matchman - kill before he summons reinforcements. Highest priority target.</li><li>Fungal Scratcher causes Infected - food consumption +33%. Bring 8-10 food on medium.</li><li>Webber enemies can shuffle party positions - have positional flexibility.</li><li>Bleed + Mark synergy: BH marks, then Hellion shreds with If It Bleeds.</li><li>Stress healer (Jester/Vestal) critical - Weald has many stress-dealing combats.</li></ul></div>
 </div>
 
-<!-- Warrens -->
+<!-- WARRENS -->
+
 <div id="tab-warrens" class="tab-pane">
 <div class="region-header"><div class="section-title" style="margin:0;border:none;">The Warrens</div><div class="focus-badges"><span class="badge badge-bleed">Bleed</span><span class="badge badge-blight">Blight</span></div></div>
 <div class="section-sub">Beast-type enemies bleed well. Disease vectors are everywhere. High stress generation from pig-men affronts.</div>
 <div class="team-grid" id="warrens-team"></div>
-<div id="warrens-synergy" class="tips-box"><h4>Team Quirk Synergy</h4><div id="warrens-synergy-content">Loading...</div></div>
-<div class="tips-box"><h4>Region Intelligence</h4><ul><li>Swine enemies are all Beast-type - Houndmaster's Mark and Cry trigger bonus damage.</li><li>Disease is rampant - Plague Doctor's Battlefield Medicine is a must.</li></ul></div>
+<div class="tips-box"><h4>Region Intelligence</h4><ul><li>Swine enemies are all Beast-type - Houndmaster's Mark and Cry trigger bonus damage.</li><li>Disease is rampant - PD's Battlefield Medicine is a must.</li><li>Carrion Eaters spawn from corpses - use abilities that prevent corpse creation.</li><li>Swinetaur Commanders can generate reinforcements - kill them first.</li><li>Pack shorter dungeons to minimize disease accumulation.</li></ul></div>
 </div>
 
-<!-- Cove -->
+<!-- COVE -->
+
 <div id="tab-cove" class="tab-pane">
 <div class="region-header"><div class="section-title" style="margin:0;border:none;">The Cove</div><div class="focus-badges"><span class="badge badge-pierce">Pierce</span><span class="badge badge-eldritch">Eldritch</span></div></div>
 <div class="section-sub">Eldritch enemies are resistant to Bleed and Blight. Shuffle abilities common - maintain position flexibility.</div>
 <div class="team-grid" id="cove-team"></div>
-<div id="cove-synergy" class="tips-box"><h4>Team Quirk Synergy</h4><div id="cove-synergy-content">Loading...</div></div>
-<div class="tips-box"><h4>Region Intelligence</h4><ul><li>Cove enemies have high bleed resist - do NOT rely on bleed DoT here.</li><li>Shieldbreaker's Pierce bypasses high-protection variants.</li></ul></div>
+<div class="tips-box"><h4>Region Intelligence</h4><ul><li>Cove enemies have 40-60% bleed resist - do NOT rely on bleed DoT here.</li><li>Squiffy Ghast applies massive stress - your Vestal must be on stress-heal watch.</li><li>Shuffle is constant - bring at least 2 heroes with positional flexibility.</li><li>Shieldbreaker's Pierce bypasses the Cove's high-protection enemy variants.</li><li>Eerie Coral curio (use Medicinal Herbs) removes a negative quirk for free.</li></ul></div>
 </div>
 
-<!-- Bosses, Darkest, Provisions, Quirks, Estate, Build Route, Data tabs follow the exact structure from your original document. They are unchanged except for the new synergy/trinket integrations where relevant. -->
+<!-- COURTYARD (NEW) -->
 
+<div id="tab-courtyard" class="tab-pane">
+<div class="region-header"><div class="section-title" style="margin:0;border:none;">The Courtyard</div><div class="focus-badges"><span class="badge badge-crimson">Crimson Court</span><span class="badge badge-bleed">Bleed</span><span class="badge badge-stress">Stress</span></div></div>
+<div class="section-sub">Bloodsucker enemies are vulnerable to Bleed, resistant to Blight and Stun. Bloodlight is permanent &mdash; no torch mechanic. Epic-length runs require self-sustaining teams.</div>
+<div class="team-switcher" id="courtyard-switcher"></div>
+<div class="team-grid" id="courtyard-team"></div>
+<div class="tips-box"><h4>Region Intelligence</h4><ul>
+<li>Bloodlight is permanent at 100 &mdash; torches won't affect light, but using one grants +5 ACC for the next battle.</li>
+<li>Stress accrues at ~1 per tile. Hallways can reach 20+ tiles. Jester/Flagellant stress-loop is essential.</li>
+<li>The Fanatic will NEVER appear inside the Courtyard &mdash; bring cursed heroes freely.</li>
+<li>Assume every hero sent here will contract the Crimson Curse. Bring all available Blood vials.</li>
+<li>Enemies have high DODGE &mdash; ACC trinkets and Battle Ballad are strongly recommended.</li>
+<li>Use Shovels on Wine Crates to create Firewood for camping &mdash; the only way to camp in the Courtyard.</li>
+<li>Medicinal Herbs on Forgotten Delicacies grants extra food supplies.</li>
+<li>Holy Water on fountains reduces Crimson Curse effects, but DO NOT use on cursed heroes (causes blight).</li>
+<li>Skeleton Keys on chests will NOT replace Crimson Court trinkets &mdash; this was patched.</li>
+<li>You can retreat from epic quests and resume where you left off. Keys carry over between attempts.</li>
+</ul></div>
+</div>
+
+<!-- FARMSTEAD (NEW) -->
+
+<div id="tab-farmstead" class="tab-pane">
+<div class="region-header"><div class="section-title" style="margin:0;border:none;">The Farmstead</div><div class="focus-badges"><span class="badge badge-comet">Color of Madness</span><span class="badge badge-endurance">Endurance</span><span class="badge badge-stress">Stress</span></div></div>
+<div class="section-sub">Endless wave-based combat. No exploration, no torchlight. Enemies span all regions after wave 1. Stress is the primary threat. Death is temporary in the Endless Harvest.</div>
+<div class="team-switcher" id="farmstead-switcher"></div>
+<div class="team-grid" id="farmstead-team"></div>
+<div class="tips-box"><h4>Region Intelligence</h4><ul>
+<li>No provisions needed &mdash; pure combat with curio rooms between waves. No firewood is given.</li>
+<li>Per-battle skill limits (Finale, Revenge, Blinding Gas) do NOT refresh between waves &mdash; only after boss waves.</li>
+<li>Death in the Endless Harvest is temporary &mdash; heroes return in 1-2 weeks but LOSE Prismatic Quirks and trinkets.</li>
+<li>Stress is the #1 killer. Vestal + Jester is the universal backbone for any serious run.</li>
+<li>Enemy corpses become Crystalline Aberrations if left alone &mdash; they explode for HP and stress damage.</li>
+<li>Wave 1 is always Farmstead Husks (high blight resist, low bleed resist). Later waves draw from all 4 base regions.</li>
+<li>The Miller appears as boss after wave group 2. Fracture / The Sleeper after group 3. Random bosses after that.</li>
+<li>Jester's Battle Ballad stacking is the single strongest sustained strategy &mdash; +ACC and +CRIT compound over rounds.</li>
+<li>Leper becomes viable here because Jester fixes his ACC problems and his AoE cleave shines vs endless waves.</li>
+<li>Crystalline (Color of Madness) trinkets from the Nomad Wagon are among the best in the game &mdash; farm Comet Shards.</li>
+</ul></div>
+</div>
+
+<div id="tab-bosses" class="tab-pane"><div class="section-title">Boss Compendium</div><div class="section-sub">Click any boss to expand. Each boss appears at Apprentice, Veteran, and Champion tiers.</div><div id="boss-list"></div></div>
+<div id="tab-darkest" class="tab-pane"><div class="section-title" style="color:var(--red);">The Darkest Dungeon</div><div class="section-sub">Four forays into madness. Heroes who complete a run are Resolute but cannot re-enter another DD run.</div><div id="dd-list"></div></div>
+<div id="tab-provisions" class="tab-pane"><div class="section-title">Provisions Guide</div><div class="prov-tabs"><button class="prov-tab active" data-prov="short">Short</button><button class="prov-tab" data-prov="medium">Medium</button><button class="prov-tab" data-prov="long">Long</button><button class="prov-tab" data-prov="courtyard">Courtyard (Epic)</button></div><div id="prov-content"></div></div>
 <div id="tab-roster" class="tab-pane">
 <div class="section-title">Hero Roster</div>
-<div class="section-sub">Track your heroes with multi-select quirks and automatic Sanitarium Lock/Purge advice.</div>
+<div class="section-sub">Track your heroes, stress, quirks, and status. Saved to localStorage.</div>
 <div class="roster-controls">
 <button class="ctrl-btn" id="addHeroBtn">+ Add Hero</button>
 <button class="ctrl-btn danger" id="clearRoster">Clear All</button>
 <select id="filterClass" style="width:150px;"><option value="">All Classes</option></select>
 <select id="filterStatus"><option value="">All Status</option><option value="active">Active</option><option value="retired">Retired</option><option value="dead">Dead</option></select>
 </div>
-
 <div class="add-hero-form" id="addHeroForm">
 <div class="form-row">
 <div class="form-group"><div class="form-label">Name</div><input type="text" id="newName" placeholder="Name..." style="width:160px;"></div>
@@ -231,48 +342,78 @@ select:focus,input:focus{outline:none;border-color:var(--gold-dim);}
 <div class="form-group"><div class="form-label">Status</div><select id="newStatus" style="width:120px;"><option value="active">Active</option><option value="retired">Retired</option><option value="dead">Dead</option></select></div>
 </div>
 <div class="form-row">
-<div class="form-group" style="flex:1;"><div class="form-label">Positive Quirks (Ctrl+click to multi-select)</div><select id="newPosQ" multiple style="width:100%;height:180px;"></select></div>
-<div class="form-group" style="flex:1;"><div class="form-label">Negative Quirks (Ctrl+click to multi-select)</div><select id="newNegQ" multiple style="width:100%;height:180px;"></select></div>
+<div class="form-group"><div class="form-label">Positive Quirks (comma-sep)</div><input type="text" id="newPosQ" placeholder="Unerring, Resilient..." style="width:280px;"></div>
+<div class="form-group"><div class="form-label">Negative Quirks (comma-sep)</div><input type="text" id="newNegQ" placeholder="Nervous, Zoophobia..." style="width:280px;"></div>
 </div>
 <div class="form-row"><button class="ctrl-btn" id="saveHero">Save Hero</button><button class="ctrl-btn" id="cancelHero">Cancel</button></div>
 </div>
 <div class="roster-grid" id="rosterGrid"></div>
 </div>
-
-<div id="tab-trinkets" class="tab-pane">
-<div class="section-title">Trinket Arsenal</div>
-<div class="section-sub">Select trinkets you own. Region teams will now show live recommendations based on hero roles and your collection.</div>
-<div class="roster-controls">
-<button class="ctrl-btn" onclick="clearTrinkets()">Clear All Owned</button>
-<input type="text" id="trinketSearch" placeholder="Search trinkets..." style="width:250px;" onkeyup="filterTrinkets()">
+<div id="tab-quirks" class="tab-pane">
+<div class="section-title">Quirk Reference</div>
+<div class="section-sub">Full quirk list with correct stats, categories, and region/monster synergy tags.</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" id="quirk-columns">
+<div><div class="section-title" style="font-size:.8rem;color:#80c060;border-color:rgba(64,96,48,.3);margin-bottom:14px;">Positive Quirks</div><div id="pos-quirks"></div></div>
+<div><div class="section-title" style="font-size:.8rem;color:#c06060;border-color:rgba(96,48,48,.3);margin-bottom:14px;">Negative Quirks</div><div id="neg-quirks"></div></div>
 </div>
-<div id="trinket-list" class="roster-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));"></div>
 </div>
-
-<!-- Data tab and others remain as in your original -->
+<div id="tab-estate" class="tab-pane">
+<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:6px;">
+<div class="section-title" style="margin:0;border:none;">Estate Tracker</div>
+<div style="display:flex;align-items:center;gap:8px;"><div class="form-label">Estate Name</div><input type="text" id="estateName" placeholder="The ??? Estate" style="width:200px;" oninput="saveEstateName()"></div>
+</div>
+<div class="section-sub">Click a pip to set upgrade level. Click active pip again to step back. Tracks match exact in-game buildings.</div>
+<div class="estate-summary" id="estate-summary"></div>
+<div class="estate-grid" id="estate-grid"></div>
+<div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+<button class="ctrl-btn danger" onclick="resetEstate()">Reset All Buildings</button>
+</div>
+</div>
+<div id="tab-buildroute" class="tab-pane">
+<div class="section-title">Build Route Optimizer</div>
+<div class="section-sub">Set your current week and strategy to get a prioritized upgrade queue based on your estate state.</div>
+<div class="route-controls">
+<div class="form-group"><div class="form-label">Current Week</div><input type="number" id="routeWeek" min="1" max="100" value="1" style="width:80px;" oninput="computeRoute()"></div>
+<div class="form-group"><div class="form-label">Strategy Focus</div><select id="routeStrategy" onchange="computeRoute()" style="width:180px;"><option value="balanced">Balanced (Default)</option><option value="survival">Survival First</option><option value="speed">Dungeon Speed</option><option value="economy">Economy / Gold</option><option value="darkest">Darkest Dungeon Prep</option></select></div>
+<div class="form-group"><div class="form-label">Show Top</div><select id="routeCount" onchange="computeRoute()" style="width:100px;"><option value="5">5 picks</option><option value="10" selected>10 picks</option><option value="20">20 picks</option><option value="999">All</option></select></div>
+</div>
+<div class="route-summary" id="route-summary"></div>
+<div id="route-queue"></div>
+</div>
+</div>
 <div id="tab-data" class="tab-pane">
-<div class="section-title">Data & Backup</div>
+<div class="section-title">Data &amp; Backup</div>
+<div class="section-sub">Export your roster and estate state as JSON to back up your progress, or import a previous save.</div>
 <div class="data-panel">
-<h3>Export Save</h3>
-<p>Copies your full roster, estate, and trinkets to clipboard as JSON.</p>
+<h3>&#128190; Export Save</h3>
+<p>Copies your full roster and estate upgrade state to clipboard as JSON. Paste it into a note or text file to keep it safe between sessions.</p>
 <div class="btn-row">
 <button class="ctrl-btn" onclick="exportData()">Copy to Clipboard</button>
 <button class="ctrl-btn" onclick="downloadData()">Download as File</button>
 </div>
 </div>
 <div class="data-panel">
-<h3>Import Save</h3>
+<h3>&#128229; Import Save</h3>
+<p>Paste previously exported JSON below and press Import. This will overwrite your current roster and estate data.</p>
 <textarea class="import-area" id="importArea" placeholder="Paste your exported JSON here..."></textarea>
 <div class="btn-row">
 <button class="ctrl-btn" onclick="importData()">Import Data</button>
+<button class="ctrl-btn danger" onclick="document.getElementById('importArea').value=''">Clear</button>
+</div>
+</div>
+<div class="data-panel">
+<h3>&#9888; Reset</h3>
+<p>Danger zone. Permanently clears all saved data from this browser.</p>
+<div class="btn-row">
+<button class="ctrl-btn danger" onclick="nukeAll()">Wipe All Data</button>
 </div>
 </div>
 </div>
-
 </div>
-
 <script>
-// ==================== FULL DATA ARRAYS (from your original document) ====================
+// ══════════════════════════════════════════════════════
+// REGION DATA — Base 4 regions (main/sub per position)
+// ══════════════════════════════════════════════════════
 const REGIONS = {
   ruins: {
     4: { main:"Vestal", mS:["Judgment","Dazzling Light","Divine Grace","Divine Comfort"], sub:"Occultist", sS:["Wyrd Reconstruction","Weakening Curse","Hands from Below","Sacrificial Stab"] },
@@ -300,110 +441,1110 @@ const REGIONS = {
   }
 };
 
-const BOSSES = [ /* your full BOSSES array from original */ ];
-const DD_RUNS = [ /* your full DD_RUNS array */ ];
-const PROVISIONS = { /* your full PROVISIONS object */ };
-const CLASSES = ["Antiquarian","Arbalest","Abomination","Bounty Hunter","Crusader","Flagellant","Grave Robber","Hellion","Highwayman","Houndmaster","Jester","Leper","Man-at-Arms","Occultist","Plague Doctor","Shieldbreaker","Vestal"];
+// ══════════════════════════════════════════════════════
+// DLC REGIONS — 3-team switcher structure
+// ══════════════════════════════════════════════════════
+const DLC_REGIONS = {
+courtyard: {
+label: “The Courtyard”,
+teams: [
+{
+name: “Team A — Bleed Sustain”,
+desc: “The meta composition. Flagellant + Jester stress loop sustains indefinitely. Maximum bleed pressure.”,
+slots: {
+4: { hero:“Vestal”, skills:[“Divine Grace”,“Divine Comfort”,“Judgment”,“Dazzling Light”] },
+3: { hero:“Jester”, skills:[“Inspiring Tune”,“Battle Ballad”,“Slice Off”,“Harvest”] },
+2: { hero:“Hellion”, skills:[“Wicked Hack”,“Iron Swan”,“If It Bleeds”,“YAWP!”] },
+1: { hero:“Flagellant”, skills:[“Punish”,“Exsanguinate”,“Endure”,“Reclaim”] }
+}
+},
+{
+name: “Team B — Balanced Offense”,
+desc: “Houndmaster and Highwayman provide flexible reach. Man-at-Arms tanks and guards. Good all-around sustain.”,
+slots: {
+4: { hero:“Arbalest”, skills:[“Sniper Shot”,“Rallying Flare”,“Bandage”,“Bola”] },
+3: { hero:“Houndmaster”, skills:[“Hound’s Rush”,“Cry Havoc”,“Lick Wounds”,“Guard Dog”] },
+2: { hero:“Highwayman”, skills:[“Open Vein”,“Pistol Shot”,“Duelist’s Advance”,“Point Blank Shot”] },
+1: { hero:“Man-at-Arms”, skills:[“Crush”,“Rampart”,“Defender”,“Bolster”] }
+}
+},
+{
+name: “Team C — Antiquarian Loot”,
+desc: “Antiquarian for gold stacking on shorter Courtyard runs. Hellion and Jester carry the combat weight.”,
+slots: {
+4: { hero:“Vestal”, skills:[“Divine Grace”,“Divine Comfort”,“Judgment”,“Dazzling Light”] },
+3: { hero:“Jester”, skills:[“Inspiring Tune”,“Battle Ballad”,“Harvest”,“Slice Off”] },
+2: { hero:“Antiquarian”, skills:[“Nervous Stab”,“Flashpowder”,“Fortifying Vapors”,“Invigorating Vapors”] },
+1: { hero:“Hellion”, skills:[“Wicked Hack”,“Iron Swan”,“If It Bleeds”,“YAWP!”] }
+}
+}
+]
+},
+farmstead: {
+label: “The Farmstead”,
+teams: [
+{
+name: “Team A — Endurance Meta”,
+desc: “The proven 300+ kill composition. Battle Ballad stacking fixes Leper’s ACC and turns him into an AoE crit machine. Shieldbreaker pierces PROT.”,
+slots: {
+4: { hero:“Vestal”, skills:[“Divine Grace”,“Divine Comfort”,“Dazzling Light”,“Judgment”] },
+3: { hero:“Jester”, skills:[“Battle Ballad”,“Inspiring Tune”,“Slice Off”,“Harvest”] },
+2: { hero:“Shieldbreaker”, skills:[“Pierce”,“Adder’s Kiss”,“Impale”,“Captivate”] },
+1: { hero:“Leper”, skills:[“Chop”,“Hew”,“Revenge”,“Withstand”] }
+}
+},
+{
+name: “Team B — Riposte Grind”,
+desc: “Man-at-Arms Retribution + Highwayman Riposte generate free damage every enemy turn. Extremely consistent for long runs.”,
+slots: {
+4: { hero:“Vestal”, skills:[“Divine Grace”,“Divine Comfort”,“Dazzling Light”,“Judgment”] },
+3: { hero:“Jester”, skills:[“Battle Ballad”,“Inspiring Tune”,“Slice Off”,“Harvest”] },
+2: { hero:“Highwayman”, skills:[“Duelist’s Advance”,“Point Blank Shot”,“Open Vein”,“Tracking Shot”] },
+1: { hero:“Man-at-Arms”, skills:[“Retribution”,“Crush”,“Defender”,“Bolster”] }
+}
+},
+{
+name: “Team C — Bleed Attrition”,
+desc: “Flagellant bleeds handle high-HP targets. Crusader provides Holy Lance mobility, stress heal, and anti-Unholy damage for Ruins waves.”,
+slots: {
+4: { hero:“Vestal”, skills:[“Divine Grace”,“Divine Comfort”,“Dazzling Light”,“Judgment”] },
+3: { hero:“Jester”, skills:[“Battle Ballad”,“Inspiring Tune”,“Slice Off”,“Harvest”] },
+2: { hero:“Flagellant”, skills:[“Punish”,“Rain of Sorrows”,“Endure”,“Reclaim”] },
+1: { hero:“Crusader”, skills:[“Smite”,“Holy Lance”,“Stunning Blow”,“Inspiring Cry”] }
+}
+}
+]
+}
+};
 
-const POS_QUIRKS = [ /* your full POS_QUIRKS array with keep, effect, category */ ];
-const NEG_QUIRKS = [ /* your full NEG_QUIRKS array with keep, effect, category */ ];
+// ══════════════════════════════════════════════════════
+// DLC team active state
+// ══════════════════════════════════════════════════════
+var dlcActiveTeam = { courtyard: 0, farmstead: 0 };
 
-const BUILDINGS = [ /* your full BUILDINGS array */ ];
-
-const TRINKETS = [
-  {id:"sacred_scroll", name:"Sacred Scroll", effect:"+33% Healing Skills", roles:["healer"], score:9},
-  {id:"dazzling_charm", name:"Dazzling Charm", effect:"+25% Healing", roles:["healer"], score:8},
-  {id:"blasphemous_vial", name:"Blasphemous Vial", effect:"+20% Blight Chance, +20% Stun Chance", roles:["blight","stun"], score:9},
-  {id:"focus_ring", name:"Focus Ring", effect:"+10 ACC, +5% CRIT", roles:["ranged","dps"], score:9},
-  {id:"ancestors_pen", name:"Ancestor's Pen", effect:"+10% Melee DMG, +8 ACC", roles:["melee","dps"], score:9},
-  {id:"ancestors_pistol", name:"Ancestor's Pistol", effect:"+15 ACC (Ranged), +3 SPD", roles:["ranged"], score:8},
-  {id:"tough_ring", name:"Tough Ring", effect:"+10% PROT, +15% Max HP", roles:["tank"], score:8},
-  {id:"legendary_bracer", name:"Legendary Bracer", effect:"+20% DMG", roles:["dps"], score:8},
-  {id:"junias_head", name:"Junia's Head", effect:"Vestal healing boost", roles:["healer"], score:10, hero:"Vestal"},
-  {id:"sharpened_letter_opener", name:"Sharpened Letter Opener", effect:"+25% Melee DMG (Grave Robber)", roles:["melee"], score:10, hero:"Grave Robber"},
-  // Add more as you like - this is a solid starting set based on community consensus
+// ══════════════════════════════════════════════════════
+// BOSSES — including 3 Courtyard bosses + The Miller
+// ══════════════════════════════════════════════════════
+const BOSSES = [
+{
+name:“The Necromancer”,
+region:“Ruins”,
+tiers:“Apprentice / Veteran / Champion”,
+teams:[
+{ label:“Primary”, heroes:“Vestal · Plague Doctor · Highwayman · Crusader” },
+{ label:“Alternate”, heroes:“Arbalest · Occultist · Bounty Hunter · Hellion” }
+],
+mechanics:[
+“Summons Bone Courtiers and Bone Soldiers — clear them or get overwhelmed”,
+“Deal damage to push him to Phase 2 faster — he heals on summon turns”,
+“Backline reach required: Ruins enemies sit in rows 3-4”,
+“Crusader’s Smite deals 33% bonus to Unholy — slot him”,
+“Necromancer Lord variant (Veteran+): has self-heal — sustained pressure needed”
+],
+avoid:[
+“Never leave summoned Courtiers alive — they can out-sustain your damage”,
+“Avoid all-bleed team — undead are immune to bleed”,
+“Don’t camp-heal mid-fight if summons are active”
+]
+},
+{
+name:“The Swine Prince”,
+region:“Weald”,
+tiers:“Apprentice / Veteran / Champion”,
+teams:[
+{ label:“Primary”, heroes:“Arbalest · Occultist · Houndmaster · Man-at-Arms” },
+{ label:“Alternate”, heroes:“Vestal · Jester · Highwayman · Hellion” }
+],
+mechanics:[
+“NEVER hit Wilbur — Swine King enters rage mode and wipes the party”,
+“Kill Wilbur LAST or let him live — he does minimal damage alone”,
+“Focus all damage on Swine King until he’s dead”,
+“Arbalest’s Bola is crucial to prevent Wilbur buffing”,
+“HM’s Hound Rush + Blackjack can stun Wilbur to skip his buff turns”
+],
+avoid:[
+“⚠ CRITICAL: ANY hit on Wilbur causes Swine King frenzy — AoEs excluded ONLY if Wilbur is dead”,
+“Don’t bring multi-target abilities if Wilbur is alive”,
+“Never rely on random targeting heroes (Leper, Abomination transformation)”
+]
+},
+{
+name:“The Hag”,
+region:“Weald”,
+tiers:“Apprentice / Veteran / Champion”,
+teams:[
+{ label:“Primary”, heroes:“Occultist · Plague Doctor · Highwayman · Jester” },
+{ label:“Alternate”, heroes:“Arbalest · Bounty Hunter · Man-at-Arms · Vestal” }
+],
+mechanics:[
+“She traps a hero in the cauldron — that hero can’t act and takes damage each round”,
+“Skills that can hit rank 4 are critical: PBS, Occultist Stab, Arbalest Sniper”,
+“Jester’s Finale or Arbalest’s Sniper can reach her in the back”,
+“Heal the trapped hero — they still take DoT damage inside”,
+“Stress heal essential — this fight is a war of attrition”
+],
+avoid:[
+“Don’t bring heroes with no rank 4 range — you’ll have a dead slot constantly”,
+“Never let the cauldron DoT go unhealed”,
+“Avoid slow teams — she heals herself at certain health thresholds”
+]
+},
+{
+name:“The Drowned Crew / Brigand Pounder”,
+region:“Warrens / Weald”,
+tiers:“Apprentice / Veteran / Champion”,
+teams:[
+{ label:“Pounder Primary”, heroes:“Plague Doctor · Bounty Hunter · Houndmaster · Vestal” },
+{ label:“Drowned Primary”, heroes:“Occultist · Hellion · Flagellant · Vestal” }
+],
+mechanics:[
+“Brigand Pounder: destroy it in 3 turns before it fires — BH Finish Him after Flare”,
+“Kill Fuseman and Matchman before Pounder is armed or wipe is imminent”,
+“Drowned Crew: kill the Drowned Sailor first — he can summon more crew endlessly”,
+“High bleed synergy against Drowned (human subtype despite appearance)”,
+“Jester’s Finale can chain-delete the Brigand Pounder immediately”
+],
+avoid:[
+“Never let Matchman survive a turn with Pounder armed”,
+“Don’t neglect stress — both fights generate massive stress”,
+“Avoid single-target-only comps for Pounder fight”
+]
+},
+{
+name:“The Siren”,
+region:“Cove”,
+tiers:“Apprentice / Veteran / Champion”,
+teams:[
+{ label:“Primary”, heroes:“Vestal · Plague Doctor · Shieldbreaker · Man-at-Arms” },
+{ label:“Alternate”, heroes:“Occultist · Arbalest · Highwayman · Houndmaster” }
+],
+mechanics:[
+“She will charm a hero — they fight for her side for 1–3 turns”,
+“Charmed heroes take reduced damage — but can be hit to break charm faster”,
+“Shieldbreaker Pierce bypasses her high protection”,
+“Keep stress low going in — charmed heroes use all their abilities”,
+“MAA’s Guard can protect party from charmed hero’s attacks”
+],
+avoid:[
+“Never bring heroes with high AoE damage — they’ll massacre your own party when charmed”,
+“Don’t stack on bleed — Cove enemies resist it strongly”,
+“Avoid bringing Abomination — transformation while charmed is catastrophic”
+]
+},
+{
+name:“The Flesh”,
+region:“Warrens”,
+tiers:“Apprentice / Veteran / Champion”,
+teams:[
+{ label:“Primary”, heroes:“Plague Doctor · Occultist · Flagellant · Vestal” },
+{ label:“Alternate”, heroes:“Arbalest · Bounty Hunter · Man-at-Arms · Houndmaster” }
+],
+mechanics:[
+“The Flesh has multiple body parts — Twitching Column is highest priority kill”,
+“Immovable — no position shuffling. Static team compositions work”,
+“Blight is extremely effective — stack it on body parts and wait”,
+“Corroded Body variant (Champion): applies disease — PD mandatory”,
+“High HP pool — this is a sustained fight. Full healing comp is viable”
+],
+avoid:[
+“Never ignore Twitching Column — it buffs the fight dramatically”,
+“Avoid running out of heals — Flesh hits hard and has many parts”,
+“Don’t forget food: fight can run 8–12 rounds”
+]
+},
+{
+name:“The Collector”,
+region:“All (Roaming)”,
+tiers:“Veteran / Champion”,
+teams:[
+{ label:“Primary”, heroes:“Vestal · Plague Doctor · Houndmaster · Highwayman” },
+{ label:“Alternate”, heroes:“Arbalest · Occultist · Man-at-Arms · Crusader” }
+],
+mechanics:[
+“Summons ‘Head’ versions of your dead heroes — they inherit some stats”,
+“Kill the Heads immediately — they deal significant damage”,
+“Collector himself has moderate HP but stuns and debuffs constantly”,
+“Bring stun resist trinkets — stun resist is key to surviving his turns”,
+“AoE skills excell here — three targets present constantly”
+],
+avoid:[
+“Never walk into a Collector fight under-provisioned”,
+“Don’t neglect the summoned heads — they will pile up fast”,
+“Avoid heroes with virtuous-dependent strategies — RNG heavy fight”
+]
+},
+// ── COURTYARD BOSSES ──────────────────────────────────
+{
+name:“The Baron”,
+region:“Courtyard (DLC)”,
+tiers:“Epic Quest”,
+teams:[
+{ label:“Primary”, heroes:“Vestal · Jester · Hellion · Flagellant” },
+{ label:“Alternate”, heroes:“Arbalest · Houndmaster · Highwayman · Man-at-Arms” }
+],
+mechanics:[
+“Baron has multiple forms — Egg form, Active form, and Enraged form”,
+“He summons Bloodsucker minions constantly — clear them to prevent being overwhelmed”,
+“Bleed is your primary damage source — Bloodsuckers are highly vulnerable”,
+“Jester’s Battle Ballad helps offset high DODGE on Courtyard enemies”,
+“Flagellant’s Exsanguinate stacks devastating bleed on Baron”,
+“Baron can drain blood from heroes — this heals him significantly”
+],
+avoid:[
+“Don’t bring blight-focused heroes — Bloodsuckers resist blight heavily”,
+“Never let minions accumulate — they can chain-stun your party”,
+“Avoid heroes without self-sustain — this is a long fight at the end of an epic dungeon”
+]
+},
+{
+name:“The Viscount”,
+region:“Courtyard (DLC)”,
+tiers:“Epic Quest”,
+teams:[
+{ label:“Primary”, heroes:“Vestal · Jester · Hellion · Flagellant” },
+{ label:“Alternate”, heroes:“Occultist · Houndmaster · Shieldbreaker · Man-at-Arms” }
+],
+mechanics:[
+“Viscount has low HP and no PROT but gets 4 actions per turn”,
+“Hanging bodies surround him — he feeds on them to heal, cure DoTs, and buff himself”,
+“Destroy the small body first — it debuffs his attack when consumed”,
+“If he eats the large body, he loses 2 actions but gains massive damage”,
+“Sustained bleed pressure is key — he can’t cure what kills him between turns”,
+“The fight is at the end of a massive dungeon — team must be self-sufficient”
+],
+avoid:[
+“Don’t leave bodies alive — each one is a full heal + buff for the Viscount”,
+“Never rely on single large hits — his 4 actions mean he outheals burst damage”,
+“Avoid running low on Blood — your cursed heroes need it to function”
+]
+},
+{
+name:“The Countess”,
+region:“Courtyard (DLC)”,
+tiers:“Epic Quest (Final)”,
+teams:[
+{ label:“Primary”, heroes:“Vestal · Jester · Hellion · Flagellant” },
+{ label:“Alternate”, heroes:“Arbalest · Occultist · Highwayman · Crusader” }
+],
+mechanics:[
+“Final Courtyard boss — defeating her cures the Crimson Curse on your ENTIRE roster”,
+“She has 3 phases with increasing damage and aggression”,
+“Phase 1: Humanoid form — moderate attacks, applies curse and stress”,
+“Phase 2: Insectoid form — heavy AoE bleed and stress damage”,
+“Phase 3: True form — devastating single-target attacks, self-healing”,
+“Bleed stacking remains the primary damage strategy across all phases”
+],
+avoid:[
+“⚠ CRITICAL: This is the longest dungeon in the game — bring maximum provisions”,
+“Don’t enter without champion-level gear — she hits harder than most DD bosses”,
+“Never let stress spiral — her stress attacks are relentless in phase 2-3”
+]
+},
+// ── FARMSTEAD BOSS ────────────────────────────────────
+{
+name:“The Miller”,
+region:“Farmstead (DLC)”,
+tiers:“Endless Harvest”,
+teams:[
+{ label:“Primary”, heroes:“Vestal · Jester · Shieldbreaker · Leper” },
+{ label:“Alternate”, heroes:“Vestal · Jester · Highwayman · Man-at-Arms” }
+],
+mechanics:[
+“Appears as boss at the end of wave group 2 in the Endless Harvest”,
+“The Miller has a powerful winter-themed AoE — Shieldbreaker should swap Impale for Puncture”,
+“He summons crystalline farmhands that apply stress and debuffs”,
+“Kill the farmhands first — their Sow Seeds applies massive stress to your whole team”,
+“Per-battle skills (Revenge, Finale) should be saved for boss waves like this”,
+“Jester’s stacked Battle Ballad buffs are crucial for this fight”
+],
+avoid:[
+“Don’t waste limited-use skills on regular waves before the Miller”,
+“Never ignore the farmhand adds — Sow Seeds will stress-wipe your party”,
+“Avoid going in with existing stress — the Miller fight is a stress gauntlet”
+]
+}
 ];
 
-// ==================== STATE ====================
-let roster = JSON.parse(localStorage.getItem('dd-roster') || '[]');
-let ownedTrinkets = JSON.parse(localStorage.getItem('dd-owned-trinkets') || '[]');
-let estateState = JSON.parse(localStorage.getItem('dd-estate') || '{}');
-let subsState = {};
-
-// ==================== HELPERS ====================
-function saveRoster() { localStorage.setItem('dd-roster', JSON.stringify(roster)); }
-function saveOwnedTrinkets() { localStorage.setItem('dd-owned-trinkets', JSON.stringify(ownedTrinkets)); }
-function saveEstate() { localStorage.setItem('dd-estate', JSON.stringify(estateState)); }
-
-// Quirk recommendation
-function getQuirkRec(quirkName, isPositive) {
-  const list = isPositive ? POS_QUIRKS : NEG_QUIRKS;
-  const quirk = list.find(q => q.name === quirkName);
-  if (!quirk) return {keep: 'Situational', color: '#c5a059'};
-  const keep = quirk.keep || 'Situational';
-  const color = keep === 'Lock' ? '#80c060' : keep === 'Purge' ? '#cc2222' : '#c5a059';
-  return {keep, color};
+const DD_RUNS = [
+{
+name:“Raid 1 — We Are the Flame”,
+subtitle:“Shuffling Horror”,
+team:“Highwayman · Crusader · Jester · Vestal”,
+desc:“The first foray is manageable but deceptive. Enemy shuffles are constant — heroes get displaced constantly.”,
+key:[
+“Every enemy shuffles your party — bring heroes that function from multiple positions”,
+“Highwayman works from positions 1–3, making him invaluable here”,
+“Crusader’s Inspiring Cry provides emergency stress healing mid-combat”,
+“Vestal must stay in position 4 — protect her above all else”,
+“The final boss applies extreme stress — virtuous heroes are far safer”
+],
+watch:[
+“Position shuffles can strand your healer in slot 1”,
+“Stress accumulates fast — manage it between rooms with Jester’s tune”,
+“Bring extra bandages — bleed sources are present”
+]
+},
+{
+name:“Raid 2 — Lighting the Way”,
+subtitle:“Templar Onslaught”,
+team:“Arbalest · Houndmaster · Man-at-Arms · Vestal”,
+desc:“Three Ancestor’s Talismans must be found and brought to the Shuffling Horror. Templars hit extremely hard.”,
+key:[
+“Collect all 3 Talismans before the final room — they’re mandatory”,
+“MAA’s Defender/Guard is crucial — Templars focus single targets”,
+“Arbalest’s Rallying Flare provides reliable stress management for the team”,
+“Houndmaster’s Cry Havoc applies debuffs to the large Templar groups”,
+“Bring maximum torches — this dungeon has severe darkness penalties”
+],
+watch:[
+“Never rush — exploration is mandatory to find all 3 Talismans”,
+“Templar Impaler hits backline — protect your Vestal”,
+“Stress builds rapidly from Templars’ special attacks”
+]
+},
+{
+name:“Raid 3 — Belly of the Beast”,
+subtitle:“Exhaustion Marathon”,
+team:“Plague Doctor · Highwayman · Occultist · Hellion”,
+desc:“The longest and most punishing foray. Exhaustion and disease are everywhere. Resource management defines success.”,
+key:[
+“PD’s Battlefield Medicine is mandatory — disease stacks rapidly here”,
+“Occultist heal variance is risky but his debuffs and reach are essential”,
+“Hellion from position 1 with YAWP keeps stress under control via stuns”,
+“Camp aggressively — this run will require 2–3 camps minimum”,
+“Bring extra food, herbs, bandages beyond what you think you need”
+],
+watch:[
+“Exhaustion forces heroes to skip turns — plan for it”,
+“Disease stacks reduce max HP — PD must cleanse constantly”,
+“The run is extremely long — heroes will accumulate multiple quirks”
+]
+},
+{
+name:“Raid 4 — Hell is in the Heart”,
+subtitle:“Final Confrontation”,
+team:“Crusader · Highwayman · Jester · Vestal”,
+desc:“The final battle against the Heart of Darkness. Your best heroes meet their destiny. Choose your sacrifices.”,
+key:[
+“The Heart has three phases — each with different priority targets”,
+“Phase 1: Kill the Coagulated Heart first to stop guaranteed crits”,
+“Phase 2: Manage stress — Jester’s Finale as finisher for phase 2 body”,
+“Phase 3: The Heart itself attacks every hero — full healing focus”,
+“Crusader is the single best hero here — Holy damage + stress heal + self-sustain”
+],
+watch:[
+“Heroes who complete this run are Resolute — they cannot re-enter the DD”,
+“Bring your most virtuous, least quirk-burdened heroes — mortality is real”,
+“Don’t bring irreplaceable heroes unless you must — acceptable sacrifice is strategy”
+]
 }
+];
 
-// Team synergy analyzer
-function getTeamSynergy(heroes, region) {
-  let strong = [];
-  let issues = [];
-  const heroNames = heroes.map(h => typeof h === 'string' ? h : h.main || h);
-  
-  if (heroNames.some(h => h.includes('Phobe') || h.includes('Phobia'))) issues.push('Region/monster phobia detected — high stress risk in ' + region);
-  if (heroNames.filter(h => h.includes('Slayer') || h.includes('Hatred')).length >= 2) strong.push('Multiple Slayer/Hatred quirks — excellent damage vs specific enemies');
-  if (heroNames.some(h => h.includes('Steady') || h.includes('Resilient') || h.includes('Optimistic'))) strong.push('Strong stress resistance/support');
-  if (heroNames.some(h => h.includes('Ruins Tactician') || h.includes('Weald Tactician'))) strong.push('Region-specific damage buffs active');
-  
-  return {strong, issues};
+// ══════════════════════════════════════════════════════
+// PROVISIONS — now includes Courtyard epic
+// ══════════════════════════════════════════════════════
+const PROVISIONS = {
+short: {
+rooms:“3–5 rooms”,
+note:“Short dungeons are resource-light. Conserve for future runs.”,
+regions:{
+ruins:  [[“Torch”,“4”,“Standard”],[“Food”,“4”,“Prevent hunger dmg”],[“Medicinal Herbs”,“1”,“Disease clear”],[“Antivenom”,“1”,“Precaution”],[“Holy Water”,“1”,“Curio use”],[“Bandage”,“1”,“Precaution”]],
+weald:  [[“Torch”,“4”,””],[“Food”,“6”,“Fungal disease”],[“Antivenom”,“2”,“Disease likely”],[“Bandage”,“2”,“Bleed”],[“Medicinal Herbs”,“2”,“Multi-disease risk”],[“Holy Water”,“0”,“Not useful”]],
+warrens:[[“Torch”,“4”,””],[“Food”,“5”,””],[“Antivenom”,“3”,“Disease heavy”],[“Bandage”,“2”,””],[“Medicinal Herbs”,“2”,””],[“Laudanum”,“1”,“Stress”]],
+cove:   [[“Torch”,“4”,””],[“Food”,“4”,””],[“Antivenom”,“1”,””],[“Bandage”,“3”,“Bleed focus”],[“Holy Water”,“1”,””],[“Shovel”,“1”,“Obstacles”]]
 }
+},
+medium: {
+rooms:“6–8 rooms”,
+note:“Standard provisioning tier. One camp typically needed.”,
+regions:{
+ruins:  [[“Torch”,“8”,””],[“Food”,“8”,””],[“Medicinal Herbs”,“2”,””],[“Antivenom”,“2”,””],[“Holy Water”,“2”,“Curio + undead”],[“Bandage”,“2”,””],[“Shovel”,“1”,””],[“Key”,“1”,“Locked curios”]],
+weald:  [[“Torch”,“8”,””],[“Food”,“10”,“Fungal disease +33%”],[“Antivenom”,“4”,””],[“Bandage”,“4”,“Bleed”],[“Medicinal Herbs”,“3”,””],[“Shovel”,“2”,””],[“Holy Water”,“1”,””],[“Laudanum”,“1”,””]],
+warrens:[[“Torch”,“8”,””],[“Food”,“8”,””],[“Antivenom”,“5”,“Disease endemic”],[“Bandage”,“3”,””],[“Medicinal Herbs”,“3”,””],[“Laudanum”,“2”,“Stress endemic”],[“Shovel”,“1”,””],[“Key”,“1”,””]],
+cove:   [[“Torch”,“8”,””],[“Food”,“8”,””],[“Antivenom”,“2”,””],[“Bandage”,“4”,””],[“Holy Water”,“2”,””],[“Shovel”,“2”,“Obstacles common”],[“Laudanum”,“1”,””],[“Key”,“1”,””]]
+}
+},
+long: {
+rooms:“9–12 rooms”,
+note:“Full provisioning. Two camps required. Bring maximum curio items.”,
+regions:{
+ruins:  [[“Torch”,“12”,””],[“Food”,“12”,””],[“Medicinal Herbs”,“3”,””],[“Antivenom”,“3”,””],[“Holy Water”,“4”,””],[“Bandage”,“3”,””],[“Shovel”,“2”,””],[“Key”,“2”,””],[“Laudanum”,“2”,””],[“Skeleton Key”,“1”,””]],
+weald:  [[“Torch”,“12”,””],[“Food”,“16”,“Fungal: pack extra”],[“Antivenom”,“6”,””],[“Bandage”,“6”,””],[“Medicinal Herbs”,“4”,””],[“Shovel”,“3”,””],[“Holy Water”,“1”,””],[“Laudanum”,“2”,””],[“Key”,“2”,””],[“Skeleton Key”,“1”,””]],
+warrens:[[“Torch”,“12”,””],[“Food”,“12”,””],[“Antivenom”,“8”,“Max antivenom”],[“Bandage”,“4”,””],[“Medicinal Herbs”,“4”,””],[“Laudanum”,“3”,””],[“Shovel”,“2”,””],[“Key”,“2”,””],[“Skeleton Key”,“1”,””],[“Holy Water”,“1”,””]],
+cove:   [[“Torch”,“12”,””],[“Food”,“12”,””],[“Antivenom”,“3”,””],[“Bandage”,“6”,””],[“Holy Water”,“3”,””],[“Shovel”,“3”,””],[“Laudanum”,“2”,””],[“Key”,“2”,””],[“Skeleton Key”,“1”,””],[“Medicinal Herbs”,“2”,””]]
+}
+},
+courtyard: {
+rooms:“Epic (20–40+ rooms)”,
+note:“The Courtyard is massive. Bring maximum food and Blood. You can retreat and resume progress.”,
+regions:{
+courtyard: [[“The Blood”,“All available”,“CRITICAL — feed cursed heroes”],[“Food”,“36”,“Max capacity — runs are extremely long”],[“Torch”,“8”,“ACC boost per use, curio interaction”],[“Bandage”,“6”,“Bloodsuckers inflict heavy bleed”],[“Shovel”,“4”,“Wine Crates → Firewood for camping”],[“Medicinal Herbs”,“4”,“Forgotten Delicacies → extra food”],[“Antivenom”,“3”,“Spiders and Supplicants cause blight”],[“Holy Water”,“2”,“Fountains reduce curse effects”]]
+}
+}
+};
 
-// Render region team with trinket rec + synergy
+const CLASSES = [“Antiquarian”,“Arbalest”,“Abomination”,“Bounty Hunter”,“Crusader”,“Flagellant”,“Grave Robber”,“Hellion”,“Highwayman”,“Houndmaster”,“Jester”,“Leper”,“Man-at-Arms”,“Occultist”,“Plague Doctor”,“Shieldbreaker”,“Vestal”];
+const POS_QUIRKS = [
+{ name:“Tough”,            effect:”+10% Max HP — straight survivability”, keep:“Lock”, category:“general”, synergy:{}, score:7 },
+{ name:“Hard Skinned”,     effect:”+5 PROT — reduces all incoming damage”, keep:“Lock”, category:“general”, synergy:{}, score:7 },
+{ name:“Quick Reflexes”,   effect:”+2 SPD — better action order every round”, keep:“Lock”, category:“general”, synergy:{}, score:8 },
+{ name:“Natural Swing”,    effect:”+5 ACC — hits land more consistently”, keep:“Lock”, category:“general”, synergy:{}, score:7 },
+{ name:“Evasive”,          effect:”+5 DODGE — harder to hit”, keep:“Lock”, category:“general”, synergy:{}, score:6 },
+{ name:“Accurate”,         effect:”+1% CRIT — small but permanent crit boost”, keep:“Situational”, category:“general”, synergy:{}, score:5 },
+{ name:“Luminous”,         effect:”+2 SPD, +5 DODGE — global, always active”, keep:“Lock”, category:“general”, synergy:{}, score:9 },
+{ name:“On Guard”,         effect:”(Round 1) +4 SPD, +5 DODGE — excellent initiative”, keep:“Lock”, category:“conditional”, synergy:{}, score:7 },
+{ name:“Quick Draw”,       effect:”(Round 1) +4 SPD — good initiative”, keep:“Situational”, category:“conditional”, synergy:{}, score:5 },
+{ name:“Precision Striker”,effect:”(Melee) +3% CRIT — lock on melee damage dealers”, keep:“Lock”, category:“conditional”, synergy:{}, score:7 },
+{ name:“Slugger”,          effect:”(Melee) +10% DMG — strong on frontline bruisers”, keep:“Lock”, category:“conditional”, synergy:{}, score:8 },
+{ name:“Unerring”,         effect:”(Ranged) +10% DMG — must-lock on ranged heroes”, keep:“Lock”, category:“conditional”, synergy:{}, score:9 },
+{ name:“Natural Eye”,      effect:”(Ranged) +5 ACC — pairs with Unerring nicely”, keep:“Lock”, category:“conditional”, synergy:{}, score:6 },
+{ name:“Eagle Eye”,        effect:”(Ranged) +3% CRIT — good on Arbalest/HWM”, keep:“Lock”, category:“conditional”, synergy:{}, score:7 },
+{ name:“Second Wind”,      effect:”(HP <50%) +10% DMG — activates near death”, keep:“Situational”, category:“conditional”, synergy:{}, score:5 },
+{ name:“Last Gasp”,        effect:”(HP <50%) +1 SPD — speed boost when low”, keep:“Situational”, category:“conditional”, synergy:{}, score:4 },
+{ name:“Clutch Hitter”,    effect:”(HP <50%) +3% CRIT — synergizes with Flagellant”, keep:“Situational”, category:“conditional”, synergy:{}, score:5 },
+{ name:“Fast Healer”,      effect:”(Camping) +20% Heal received — strong for tanky heroes”, keep:“Lock”, category:“conditional”, synergy:{}, score:7 },
+{ name:“Stout”,            effect:”(Camping) +20% Heal received — same as Fast Healer”, keep:“Lock”, category:“conditional”, synergy:{}, score:7 },
+{ name:“Back Tracker”,     effect:”(Walking backwards) -100% Stress DMG”, keep:“Situational”, category:“conditional”, synergy:{}, score:4 },
+{ name:“Early Riser”,      effect:”(Light >75) +2 SPD — reward for high torch play”, keep:“Situational”, category:“light”, synergy:{bonusRegions:[‘ruins’,‘weald’,‘warrens’,‘cove’]}, score:6 },
+{ name:“Night Owl”,        effect:”(Light <25) +2 SPD — dark torch specialist”, keep:“Situational”, category:“light”, synergy:{}, score:5 },
+{ name:“Warrior of Light”, effect:”(Light >75) +10% DMG — strong high-torch bonus”, keep:“Lock”, category:“light”, synergy:{bonusRegions:[‘ruins’,‘weald’,‘warrens’,‘cove’]}, score:8 },
+{ name:“Lurker”,           effect:”(Light <25) +10% DMG — dark dungeon specialist”, keep:“Situational”, category:“light”, synergy:{}, score:6 },
+{ name:“Photomania”,       effect:”(Light >75) -10% Stress DMG received”, keep:“Situational”, category:“light”, synergy:{bonusRegions:[‘ruins’,‘weald’,‘warrens’,‘cove’]}, score:5 },
+{ name:“Ruins Tactician”,  effect:”(Ruins) +15% DMG — pure damage in the Ruins”, keep:“Lock”, category:“region”, synergy:{bonusRegions:[‘ruins’]}, score:10 },
+{ name:“Weald Tactician”,  effect:”(Weald) +15% DMG — pure damage in the Weald”, keep:“Lock”, category:“region”, synergy:{bonusRegions:[‘weald’]}, score:10 },
+{ name:“Warrens Tactician”,effect:”(Warrens) +15% DMG — pure damage in the Warrens”, keep:“Lock”, category:“region”, synergy:{bonusRegions:[‘warrens’]}, score:10 },
+{ name:“Cove Tactician”,   effect:”(Cove) +15% DMG — pure damage in the Cove”, keep:“Lock”, category:“region”, synergy:{bonusRegions:[‘cove’]}, score:10 },
+{ name:“Ruins Adventurer”, effect:”(Ruins) +15% Stress Resist — stress defense in Ruins”, keep:“Lock”, category:“region”, synergy:{bonusRegions:[‘ruins’]}, score:9 },
+{ name:“Weald Adventurer”, effect:”(Weald) +15% Stress Resist — stress defense in Weald”, keep:“Lock”, category:“region”, synergy:{bonusRegions:[‘weald’]}, score:9 },
+{ name:“Warrens Adventurer”,effect:”(Warrens) +15% Stress Resist — stress defense in Warrens”, keep:“Lock”, category:“region”, synergy:{bonusRegions:[‘warrens’]}, score:9 },
+{ name:“Cove Adventurer”,  effect:”(Cove) -20% Stress received — exceptional Cove stress defense”, keep:“Lock”, category:“region”, synergy:{bonusRegions:[‘cove’]}, score:10 },
+{ name:“Ruins Explorer”,   effect:”(Ruins) +20% Scouting Chance — reveal rooms early”, keep:“Situational”, category:“region”, synergy:{bonusRegions:[‘ruins’]}, score:5 },
+{ name:“Weald Explorer”,   effect:”(Weald) +20% Scouting Chance”, keep:“Situational”, category:“region”, synergy:{bonusRegions:[‘weald’]}, score:5 },
+{ name:“Warrens Explorer”, effect:”(Warrens) +20% Scouting Chance”, keep:“Situational”, category:“region”, synergy:{bonusRegions:[‘warrens’]}, score:5 },
+{ name:“Cove Explorer”,    effect:”(Cove) +10% Scouting Chance — avoids ambushes”, keep:“Situational”, category:“region”, synergy:{bonusRegions:[‘cove’]}, score:4 },
+{ name:“Cove Scrounger”,   effect:”(Cove) +5% Scouting Chance — weaker version of Explorer”, keep:“Situational”, category:“region”, synergy:{bonusRegions:[‘cove’]}, score:3 },
+{ name:“Slayer of Beast”,    effect:”(vs Beast) +10 ACC, +3% CRIT — Weald/Warrens specialist”, keep:“Lock”, category:“monster”, synergy:{bonusRegions:[‘weald’,‘warrens’]}, score:9 },
+{ name:“Slayer of Eldritch”, effect:”(vs Eldritch) +10 ACC, +3% CRIT — Cove/Ruins specialist”, keep:“Lock”, category:“monster”, synergy:{bonusRegions:[‘cove’,‘ruins’]}, score:9 },
+{ name:“Slayer of Mankind”,  effect:”(vs Mankind) +10 ACC, +3% CRIT — Weald/Warrens vs Brigands”, keep:“Lock”, category:“monster”, synergy:{bonusRegions:[‘weald’,‘warrens’]}, score:8 },
+{ name:“Slayer of Unholy”,   effect:”(vs Unholy) +10 ACC, +3% CRIT — Ruins specialist”, keep:“Lock”, category:“monster”, synergy:{bonusRegions:[‘ruins’]}, score:9 },
+{ name:“Hatred of Beast”,    effect:”(vs Beast) +15% DMG, +15% Stress Resist — best Beast quirk”, keep:“Lock”, category:“monster”, synergy:{bonusRegions:[‘weald’,‘warrens’]}, score:10 },
+{ name:“Hatred of Eldritch”, effect:”(vs Eldritch) +15% DMG, +15% Stress Resist — best Eldritch quirk”, keep:“Lock”, category:“monster”, synergy:{bonusRegions:[‘cove’,‘ruins’]}, score:10 },
+{ name:“Hatred of Mankind”,  effect:”(vs Mankind) +15% DMG, +15% Stress Resist — Brigand/Weald killer”, keep:“Lock”, category:“monster”, synergy:{bonusRegions:[‘weald’,‘warrens’]}, score:9 },
+{ name:“Hatred of Unholy”,   effect:”(vs Unholy) +15% DMG, +15% Stress Resist — Ruins killer”, keep:“Lock”, category:“monster”, synergy:{bonusRegions:[‘ruins’]}, score:10 },
+{ name:“Steady”,           effect:”-10% Stress DMG received — always valuable”, keep:“Lock”, category:“resist”, synergy:{}, score:8 },
+{ name:“Resilient”,        effect:”+10% Stress Heal — speeds up recovery”, keep:“Lock”, category:“resist”, synergy:{}, score:7 },
+{ name:“Thick Blooded”,    effect:”+10% Blight Resist — useful vs Weald/Warrens”, keep:“Situational”, category:“resist”, synergy:{bonusRegions:[‘weald’,‘warrens’]}, score:6 },
+{ name:“Clotter”,          effect:”+15% Bleed Resist — lock for Weald runners”, keep:“Lock”, category:“resist”, synergy:{bonusRegions:[‘weald’,‘warrens’]}, score:7 },
+{ name:“Robust”,           effect:”+15% Disease Resist — lock for Warrens specialists”, keep:“Lock”, category:“resist”, synergy:{bonusRegions:[‘warrens’]}, score:8 },
+{ name:“Hard Noggin”,      effect:”+15% Stun Resist — prevents stun-lock”, keep:“Lock”, category:“resist”, synergy:{}, score:8 },
+{ name:“Irrepressible”,    effect:”+5% Affliction Resist — reduces virtue/affliction RNG”, keep:“Situational”, category:“resist”, synergy:{}, score:5 },
+{ name:“Unyielding”,       effect:”+10% Deathblow Resist — direct death prevention”, keep:“Lock”, category:“resist”, synergy:{}, score:9 },
+{ name:“Optimistic”,       effect:”+25% Debuff Resist — keeps hero stats intact”, keep:“Lock”, category:“resist”, synergy:{}, score:8 },
+{ name:“Meditator”,        effect:”+20% Stress Heal when Meditating (Abbey) or camping”, keep:“Lock”, category:“town”, synergy:{}, score:7 },
+{ name:“Nymphomania”,      effect:”+20% Stress Heal at Brothel — pairs with Tavern”, keep:“Situational”, category:“town”, synergy:{}, score:4 },
+];
+const NEG_QUIRKS = [
+{ name:“Fragile”,          effect:”-10% Max HP — dangerous on frontliners”, keep:“Purge”, category:“general”, synergy:{}, score:-7 },
+{ name:“Soft”,             effect:”-5% Max HP — minor but cumulative”, keep:“Purge”, category:“general”, synergy:{}, score:-5 },
+{ name:“Slow Reflexes”,    effect:”-1 SPD — acts later every round”, keep:“Purge”, category:“general”, synergy:{}, score:-5 },
+{ name:“The Yips”,         effect:”-5 ACC — misses compound over a dungeon”, keep:“Purge”, category:“general”, synergy:{}, score:-6 },
+{ name:“Clumsy”,           effect:”-5 DODGE — easier to hit”, keep:“Purge”, category:“general”, synergy:{}, score:-5 },
+{ name:“Inaccurate”,       effect:”-1% CRIT — minor penalty”, keep:“Situational”, category:“general”, synergy:{}, score:-3 },
+{ name:“The Runs”,         effect:”-10 DEF, -10% Max HP — double penalty”, keep:“Purge”, category:“general”, synergy:{}, score:-8 },
+{ name:“Tetanus”,          effect:”-5 ACC, -10% DMG — significant combat penalty”, keep:“Purge”, category:“general”, synergy:{}, score:-8 },
+{ name:“Syphilis”,         effect:”-5 ACC, -10 DMG, -10% Max HP — severe triple penalty”, keep:“Purge”, category:“general”, synergy:{}, score:-10 },
+{ name:“Rabies”,           effect:”-10 ACC, +20% DMG — risky trade-off”, keep:“Situational”, category:“general”, synergy:{}, score:-3 },
+{ name:“Slow Draw”,        effect:”(Round 1) -4 SPD — acts last on opening round”, keep:“Purge”, category:“conditional”, synergy:{}, score:-5 },
+{ name:“Off Guard”,        effect:”(Round 1) -4 SPD, -5 DODGE — vulnerable opener”, keep:“Purge”, category:“conditional”, synergy:{}, score:-6 },
+{ name:“Weak Grip”,        effect:”(Melee) -3% CRIT — hurts melee damage dealers”, keep:“Purge”, category:“conditional”, synergy:{}, score:-5 },
+{ name:“Torn Rotator Cuff”,effect:”(Melee) -5% DMG — persistent melee penalty”, keep:“Purge”, category:“conditional”, synergy:{}, score:-5 },
+{ name:“Scattering”,       effect:”(Ranged) -5% DMG — hurts ranged heroes”, keep:“Purge”, category:“conditional”, synergy:{}, score:-5 },
+{ name:“Lazy Eye”,         effect:”(Ranged) -5 ACC — ranged heroes miss more”, keep:“Purge”, category:“conditional”, synergy:{}, score:-6 },
+{ name:“Flawed Release”,   effect:”(Ranged) -3% CRIT — minor ranged penalty”, keep:“Purge”, category:“conditional”, synergy:{}, score:-4 },
+{ name:“Tuckered Out”,     effect:”(HP <50%) -10% DMG — gets weaker when wounded”, keep:“Purge”, category:“conditional”, synergy:{}, score:-6 },
+{ name:“Winded”,           effect:”(HP <50%) -1 SPD — slows when hurt”, keep:“Purge”, category:“conditional”, synergy:{}, score:-4 },
+{ name:“Dud Hitter”,       effect:”(HP <50%) -3% CRIT — loses punch when damaged”, keep:“Purge”, category:“conditional”, synergy:{}, score:-4 },
+{ name:“Stomach Cramp”,    effect:”(Camping) -20% Heal received — undermines camping”, keep:“Purge”, category:“conditional”, synergy:{}, score:-7 },
+{ name:“Bulimic”,          effect:”(Camping) -20% Heal received — same as Stomach Cramp”, keep:“Purge”, category:“conditional”, synergy:{}, score:-7 },
+{ name:“Stress Eater”,     effect:”(Stress >50) +100% Food consumed — severe food drain”, keep:“Purge”, category:“conditional”, synergy:{}, score:-6 },
+{ name:“Sensitive to Light”,effect:”(Light >75) -10% DMG — punishes high torch play”, keep:“Purge”, category:“light”, synergy:{penaltyRegions:[‘ruins’,‘weald’,‘warrens’,‘cove’]}, score:-6 },
+{ name:“Night Blindness”,  effect:”(Light <25) -10% DMG — punishes dark runs”, keep:“Situational”, category:“light”, synergy:{}, score:-4 },
+{ name:“Diurnal”,          effect:”(Light <25) -2 SPD — slow in darkness”, keep:“Situational”, category:“light”, synergy:{}, score:-4 },
+{ name:“Nocturnal”,        effect:”(Light >75) -2 SPD — slow at high torch”, keep:“Situational”, category:“light”, synergy:{}, score:-4 },
+{ name:“Phengophobia”,     effect:”(Light >75) -20% Stress Resist — stressed by bright light”, keep:“Purge”, category:“light”, synergy:{penaltyRegions:[‘ruins’,‘weald’,‘warrens’,‘cove’]}, score:-7 },
+{ name:“Lygomania”,        effect:”(Light >75) +10% Stress DMG — stressed by bright light”, keep:“Purge”, category:“light”, synergy:{penaltyRegions:[‘ruins’,‘weald’,‘warrens’,‘cove’]}, score:-7 },
+{ name:“Ruins Phobe”,      effect:”(Ruins) -20% Stress Resist — badly stressed in Ruins”, keep:“Purge”, category:“region”, synergy:{penaltyRegions:[‘ruins’]}, score:-10 },
+{ name:“Weald Phobe”,      effect:”(Weald) -20% Stress Resist — badly stressed in Weald”, keep:“Purge”, category:“region”, synergy:{penaltyRegions:[‘weald’]}, score:-10 },
+{ name:“Warrens Phobe”,    effect:”(Warrens) -20% Stress Resist — badly stressed in Warrens”, keep:“Purge”, category:“region”, synergy:{penaltyRegions:[‘warrens’]}, score:-10 },
+{ name:“Cove Phobe”,       effect:”(Cove) +20% Stress received — brutal in the Cove”, keep:“Purge”, category:“region”, synergy:{penaltyRegions:[‘cove’]}, score:-10 },
+{ name:“Zoophobia”,        effect:”(vs Beast) -20% Stress Resist — Weald/Warrens crippler”, keep:“Purge”, category:“monster”, synergy:{penaltyRegions:[‘weald’,‘warrens’]}, score:-9 },
+{ name:“Automatonophobia”, effect:”(vs Mankind) -20% Stress Resist — Weald/Brigand problem”, keep:“Purge”, category:“monster”, synergy:{penaltyRegions:[‘weald’,‘warrens’]}, score:-8 },
+{ name:“Fear of Beast”,    effect:”(vs Beast) -15% Stress Resist, -10 ACC — double penalty”, keep:“Purge”, category:“monster”, synergy:{penaltyRegions:[‘weald’,‘warrens’]}, score:-9 },
+{ name:“Fear of Eldritch”, effect:”(vs Eldritch) -15% Stress Resist, -10 ACC — Cove/Ruins problem”, keep:“Purge”, category:“monster”, synergy:{penaltyRegions:[‘cove’,‘ruins’]}, score:-9 },
+{ name:“Fear of Mankind”,  effect:”(vs Mankind) -15% Stress Resist, -10 ACC”, keep:“Purge”, category:“monster”, synergy:{penaltyRegions:[‘weald’,‘warrens’]}, score:-8 },
+{ name:“Fear of Unholy”,   effect:”(vs Unholy) -15% Stress Resist, -10 ACC — Ruins problem”, keep:“Purge”, category:“monster”, synergy:{penaltyRegions:[‘ruins’]}, score:-9 },
+{ name:“Claustrophobia”,   effect:”(In corridor) -20% Stress Resist — hurts all regions”, keep:“Purge”, category:“monster”, synergy:{penaltyRegions:[‘ruins’,‘weald’,‘warrens’,‘cove’]}, score:-8 },
+{ name:“Nervous”,          effect:”+10% Stress DMG received — stacks badly”, keep:“Purge”, category:“resist”, synergy:{}, score:-7 },
+{ name:“Ruminator”,        effect:”-10% Stress Heal — slows recovery in town”, keep:“Purge”, category:“resist”, synergy:{}, score:-6 },
+{ name:“Thin Blooded”,     effect:”-10% Blight Resist — worse in Weald/Warrens”, keep:“Purge”, category:“resist”, synergy:{penaltyRegions:[‘weald’,‘warrens’]}, score:-5 },
+{ name:“Anemic”,           effect:”-10% Bleed Resist — worse in Weald”, keep:“Purge”, category:“resist”, synergy:{penaltyRegions:[‘weald’]}, score:-5 },
+{ name:“Hemophilia”,       effect:”-20% Bleed Resist — dangerous in Weald/Warrens”, keep:“Purge”, category:“resist”, synergy:{penaltyRegions:[‘weald’,‘warrens’]}, score:-8 },
+{ name:“Sickly”,           effect:”-10% Disease Resist — risky in Warrens”, keep:“Purge”, category:“resist”, synergy:{penaltyRegions:[‘warrens’]}, score:-5 },
+{ name:“Wasting Sickness”, effect:”-50% Disease Resist — never run in Warrens”, keep:“Purge”, category:“resist”, synergy:{penaltyRegions:[‘warrens’]}, score:-10 },
+{ name:“Shocker”,          effect:”-10% Stun Resist — gets stunned more often”, keep:“Purge”, category:“resist”, synergy:{}, score:-5 },
+{ name:“Mercurial”,        effect:”-5% Affliction Resist — more likely to afflict”, keep:“Purge”, category:“resist”, synergy:{}, score:-5 },
+{ name:“Suicidal”,         effect:”-10% Deathblow Resist — more likely to die at Death’s Door”, keep:“Purge”, category:“resist”, synergy:{}, score:-9 },
+{ name:“Bloodthirsty”,     effect:“35% chance to auto-trigger Torture curios — wastes turns”, keep:“Purge”, category:“curio”, synergy:{}, score:-6 },
+{ name:“Kleptomaniac”,     effect:“35% chance to auto-trigger Treasure curios — keeps loot but risky”, keep:“Situational”, category:“curio”, synergy:{}, score:-2 },
+{ name:“Compulsive”,       effect:“20% chance to auto-trigger ANY curio — highly unpredictable”, keep:“Purge”, category:“curio”, synergy:{penaltyRegions:[‘ruins’,‘weald’,‘warrens’,‘cove’]}, score:-8 },
+{ name:“Guilty Conscience”,effect:“35% chance to auto-trigger Worship curios”, keep:“Situational”, category:“curio”, synergy:{penaltyRegions:[‘ruins’]}, score:-4 },
+{ name:“Dark Temptation”,  effect:“40% chance to auto-trigger Unholy curios”, keep:“Purge”, category:“curio”, synergy:{penaltyRegions:[‘ruins’]}, score:-5 },
+{ name:“Demonomania”,      effect:“40% chance to auto-trigger Unholy curios”, keep:“Purge”, category:“curio”, synergy:{penaltyRegions:[‘ruins’]}, score:-5 },
+{ name:“Egomania”,         effect:“40% chance to auto-trigger Reflective curios — keeps loot”, keep:“Situational”, category:“curio”, synergy:{}, score:-2 },
+{ name:“Necromania”,       effect:“40% chance to auto-trigger Body curios”, keep:“Purge”, category:“curio”, synergy:{penaltyRegions:[‘ruins’,‘warrens’]}, score:-5 },
+{ name:“Faithless”,        effect:“Will not Pray or Flagellate — blocks Abbey”, keep:“Purge”, category:“town”, synergy:{}, score:-7 },
+{ name:“Deviant Tastes”,   effect:“Cannot visit Brothel — limits Tavern options”, keep:“Purge”, category:“town”, synergy:{}, score:-5 },
+{ name:“Known Cheat”,      effect:“Cannot Gamble — blocks Tavern option”, keep:“Purge”, category:“town”, synergy:{}, score:-4 },
+{ name:“Unquiet Mind”,     effect:“Cannot Meditate — blocks Abbey Cloister”, keep:“Purge”, category:“town”, synergy:{}, score:-6 },
+{ name:“Witness”,          effect:“Will not Pray — partial Abbey block”, keep:“Purge”, category:“town”, synergy:{}, score:-5 },
+{ name:“Tippler”,          effect:“Will only Drink — forces Tavern Bar exclusively”, keep:“Situational”, category:“town”, synergy:{}, score:-3 },
+{ name:“Resolution”,       effect:“Will never Drink — blocks Tavern Bar”, keep:“Situational”, category:“town”, synergy:{}, score:-3 },
+{ name:“Thanatophobia”,    effect:”+15 Stress when an ally dies — chain-reaction risk”, keep:“Purge”, category:“town”, synergy:{}, score:-7 },
+{ name:“Abusive”,          effect:“All resists -15%, -5 ACC, -15 DEF; stresses party”, keep:“Purge”, category:“general”, synergy:{}, score:-9 },
+{ name:“Masochistic”,      effect:“All resists -15%, -15 DEF; may self-attack or death-mark self”, keep:“Purge”, category:“general”, synergy:{}, score:-9 },
+{ name:“Paranoid”,         effect:“All resists -15%; may ignore commands or act randomly”, keep:“Purge”, category:“general”, synergy:{}, score:-8 },
+{ name:“Hopeless”,         effect:“All resists -15%, -3 SPD; may ignore commands”, keep:“Purge”, category:“general”, synergy:{}, score:-8 },
+];
+
+const BUILDINGS = [
+{ id:‘abbey’, name:‘Abbey’, icon:‘⛪’, upgrades:[
+{ label:‘Cloister’, maxLevel:6, effects:[‘Unlocks Prayer treatment’,‘Improved meditation quality’,‘Further improvement’,‘Veteran-tier recovery’,‘Reduced treatment cost’,‘Max quality — Cloister mastered’], tags:[‘stress’,‘survival’], priority:9 },
+{ label:‘Transept’, maxLevel:6, effects:[‘Unlocks Flagellation treatment’,‘Improved flagellation quality’,‘Further improvement’,‘Veteran-tier recovery’,‘Reduced treatment cost’,‘Max quality — Transept mastered’], tags:[‘stress’,‘survival’], priority:8 },
+{ label:‘Penance Hall’, maxLevel:6, effects:[‘Unlocks Penance treatment’,‘Improved absolution quality’,‘Further improvement’,‘Veteran-tier recovery’,‘Reduced treatment cost’,‘Max quality — Penance Hall mastered’], tags:[‘stress’,‘survival’], priority:7 }
+]},
+{ id:‘tavern’, name:‘Tavern’, icon:‘🍺’, upgrades:[
+{ label:‘Bar’, maxLevel:6, effects:[‘Unlocks Bar treatment’,‘Improved drinking quality’,‘Further improvement’,‘Veteran-tier stress relief’,‘Reduced treatment cost’,‘Max quality — Bar mastered’], tags:[‘stress’,‘economy’], priority:9 },
+{ label:‘Gambling Hall’, maxLevel:6, effects:[‘Unlocks Gambling treatment’,‘Improved gambling quality’,‘Further improvement’,‘Veteran-tier stress relief’,‘Reduced cost’,‘Max quality — Gambling mastered’], tags:[‘stress’,‘economy’], priority:7 },
+{ label:‘Brothel’, maxLevel:6, effects:[‘Unlocks Brothel treatment’,‘Improved quality’,‘Further improvement’,‘Veteran-tier stress relief’,‘Reduced cost’,‘Max quality — Brothel mastered’], tags:[‘stress’], priority:7 }
+]},
+{ id:‘sanitarium’, name:‘Sanitarium’, icon:‘🏥’, upgrades:[
+{ label:‘Treatment Library’, maxLevel:5, effects:[‘Unlocks quirk treatment (1 slot)’,‘2nd quirk slot available’,‘Improved removal quality’,‘Reduced treatment cost’,‘Max library — guaranteed removal’], tags:[‘quirks’,‘survival’], priority:9 },
+{ label:‘Medical Devices’, maxLevel:5, effects:[‘Unlocks disease treatment (1 slot)’,‘2nd disease slot available’,‘Improved cure quality’,‘Reduced disease cost’,‘Max devices — full disease mastery’], tags:[‘quirks’,‘survival’], priority:8 },
+{ label:‘Patient Cells’, maxLevel:4, effects:[‘Unlocks 3rd treatment slot’,‘4th treatment slot’,‘Reduced overall cost’,‘Max capacity — 4 simultaneous patients’], tags:[‘quirks’,‘survival’], priority:7 }
+]},
+{ id:‘blacksmith’, name:‘Blacksmith’, icon:‘⚒️’, upgrades:[
+{ label:‘Weaponsmithing’, maxLevel:4, effects:[‘Apprentice weapons available’,‘Veteran weapons available’,‘Champion weapons available’,‘Max — all tiers at reduced cost’], tags:[‘speed’,‘darkest’], priority:10 },
+{ label:‘Armorsmithing’, maxLevel:4, effects:[‘Apprentice armor available’,‘Veteran armor available’,‘Champion armor available’,‘Max — all tiers at reduced cost’], tags:[‘survival’,‘darkest’], priority:10 },
+{ label:‘Furnace’, maxLevel:4, effects:[‘Apprentice upgrade discount’,‘Veteran upgrade discount’,‘Champion upgrade discount’,‘Max — maximum cost reduction’], tags:[‘economy’,‘darkest’], priority:8 }
+]},
+{ id:‘guild’, name:‘Guild’, icon:‘⚔️’, upgrades:[
+{ label:‘Instructor Mastery’, maxLevel:4, effects:[‘Apprentice skills available’,‘Veteran skills available’,‘Champion skills available’,‘Max — all skill tiers unlocked’], tags:[‘speed’,‘darkest’], priority:10 },
+{ label:‘Training Regimen’, maxLevel:5, effects:[‘1 skill upgrade slot’,‘2 skill upgrade slots’,‘3 skill upgrade slots’,‘4 skill upgrade slots’,‘Max — 5 slots, reduced costs’], tags:[‘speed’,‘darkest’], priority:8 }
+]},
+{ id:‘stagecoach’, name:‘Stage Coach’, icon:‘🚌’, upgrades:[
+{ label:‘Stagecoach Network’, maxLevel:5, effects:[‘Base hero recruitment (2/week)’,‘3 heroes available per week’,‘4 heroes available per week’,‘Improved class variety’,‘Max — 5 heroes/week, rare class boost’], tags:[‘survival’,‘speed’], priority:9 },
+{ label:‘Hero Barracks’, maxLevel:5, effects:[‘Roster size +2 (11 total)’,‘Roster size +2 (13 total)’,‘Roster size +2 (15 total)’,‘Roster size +2 (17 total)’,‘Max — full 19-hero roster’], tags:[‘survival’], priority:9 },
+{ label:‘Experienced Recruits’, maxLevel:4, effects:[‘Recruits arrive at Lvl 1’,‘Recruits arrive at Lvl 2’,‘Recruits arrive at Lvl 3’,‘Max — recruits arrive seasoned with bonuses’], tags:[‘speed’,‘darkest’], priority:7 }
+]},
+{ id:‘survivalist’, name:‘Survivalist’, icon:‘🏕️’, upgrades:[
+{ label:‘Bonfire’, maxLevel:5, effects:[‘Unlocks basic camping skills’,‘Additional camping skills available’,‘Further camping skill unlocks’,‘Veteran-tier camping skills’,‘Max — all camping skills + reduced costs’], tags:[‘survival’,‘speed’], priority:9 }
+]},
+{ id:‘nomadwagon’, name:‘Nomad Wagon’, icon:‘🛒’, upgrades:[
+{ label:‘Wagon Size’, maxLevel:4, effects:[‘Trinket stock +1 (wider selection)’,‘Trinket stock +2’,‘Trinket stock +3’,‘Max — full trinket catalogue available’], tags:[‘economy’,‘speed’], priority:7 },
+{ label:‘Merchant Network’, maxLevel:5, effects:[‘Trinket cost reduction tier 1’,‘Trinket cost reduction tier 2’,‘Trinket cost reduction tier 3’,‘Rare trinket appearance chance up’,‘Max — max discount + rare trinket guarantee’], tags:[‘economy’], priority:8 }
+]}
+];
+
+// ══════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════
+var roster = JSON.parse(localStorage.getItem(‘dd-roster’) || ‘[]’);
+var subsState = {};
+var estateState = JSON.parse(localStorage.getItem(‘dd-estate’) || ‘{}’);
+var activeProv = ‘short’;
+var activeProvRegion = ‘ruins’;
+var initialized = {};
+
+// ══════════════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════════════
+function stressColor(s) { return s < 50 ? ‘#80c060’ : s < 100 ? ‘#c5a059’ : s < 150 ? ‘#c08020’ : ‘#cc2222’; }
+function saveRoster() { localStorage.setItem(‘dd-roster’, JSON.stringify(roster)); }
+function saveEstate() { localStorage.setItem(‘dd-estate’, JSON.stringify(estateState)); }
+function saveEstateName() { localStorage.setItem(‘dd-estate-name’, document.getElementById(‘estateName’).value); }
+function getUpgradeLevel(bId, uIdx) { return estateState[bId + ‘*’ + uIdx] || 0; }
+function setUpgradeLevel(bId, uIdx, level) { estateState[bId + ’*’ + uIdx] = level; saveEstate(); renderEstate(); if (initialized[‘buildroute’]) computeRoute(); }
+function pipClick(bId, uIdx, clicked, maxLevel) { var cur = getUpgradeLevel(bId, uIdx); var nv = cur === clicked ? clicked - 1 : clicked; setUpgradeLevel(bId, uIdx, Math.max(0, Math.min(maxLevel, nv))); }
+function resetEstate() { if (confirm(‘Reset all building levels to 0?’)) { estateState = {}; saveEstate(); renderEstate(); if (initialized[‘buildroute’]) computeRoute(); } }
+
+// ══════════════════════════════════════════════════════
+// BASE REGION TEAMS (main/sub swap per position)
+// ══════════════════════════════════════════════════════
 function renderRegion(rk) {
-  const region = REGIONS[rk];
-  if (!region) return;
-  if (!subsState[rk]) subsState[rk] = {1:false,2:false,3:false,4:false};
-  
-  const grid = document.getElementById(rk + '-team');
-  let html = '';
-  const positions = [4,3,2,1];
-  const posLabels = {4:'Position 4 (Back)',3:'Position 3',2:'Position 2',1:'Position 1 (Front)'};
-  
-  positions.forEach(pos => {
-    const hero = region[pos];
-    const isSub = subsState[rk][pos];
-    const name = isSub ? hero.sub : hero.main;
-    const skills = isSub ? hero.sS : hero.mS;
-    const skillsHtml = skills.map(s => `<div style="font-size:.82rem;color:var(--text-dim);line-height:1.8;font-style:italic;">${s}</div>`).join('');
-    
-    const trinketRec = getTrinketRec(name, rk); // defined below
-    
-    html += `<div>
-      <div class="pos-label">${posLabels[pos]}</div>
-      <div class="hero-card${isSub ? ' subbed' : ''}">
-        <div class="hero-name${isSub ? ' sub-active' : ''}">${name}</div>
-        <div class="skills-list">${skillsHtml}</div>
-        <div style="margin-top:8px;font-size:.75rem;color:var(--gold-dim);">Recommended Trinkets: ${trinketRec}</div>
-        <button class="swap-btn${isSub ? ' subbed' : ''}" onclick="toggleSub('${rk}',${pos})">${isSub ? 'Back to Main' : 'Sub: ' + hero.sub}</button>
-      </div>
-    </div>`;
+var region = REGIONS[rk];
+if (!region) return;
+if (!subsState[rk]) subsState[rk] = {1:false,2:false,3:false,4:false};
+var grid = document.getElementById(rk + ‘-team’);
+if (!grid) return;
+var positions = [4,3,2,1];
+var posLabels = {4:‘Position 4 (Back)’,3:‘Position 3’,2:‘Position 2’,1:‘Position 1 (Front)’};
+var html = ‘’;
+positions.forEach(function(pos) {
+var hero = region[pos];
+var isSub = subsState[rk][pos];
+var name = isSub ? hero.sub : hero.main;
+var skills = isSub ? hero.sS : hero.mS;
+var skillsHtml = skills.map(function(s) { return ‘<div style="font-size:.82rem;color:var(--text-dim);line-height:1.8;font-style:italic;">’ + s + ‘</div>’; }).join(’’);
+html += ‘<div>’
+
+- ‘<div class="pos-label">’ + posLabels[pos] + ‘</div>’
+- ‘<div class="hero-card' + (isSub ? ' subbed' : '') + '">’
+- ‘<div class="hero-name' + (isSub ? ' sub-active' : '') + '">’ + name + ‘</div>’
+- ‘<div class="skills-list">’ + skillsHtml + ‘</div>’
+- ‘<button class="swap-btn' + (isSub ? ' subbed' : '') + '" onclick="toggleSub(\'' + rk + '\',' + pos + ')">’
+- (isSub ? ‘Back to Main’ : ’Sub: ’ + hero.sub)
+- ‘</button></div></div>’;
   });
-  
   grid.innerHTML = html;
-  
-  // Synergy
-  const synergyEl = document.getElementById(rk + '-synergy-content');
-  if (synergyEl) {
-    const allHeroes = positions.map(pos => {
-      const h = region[pos];
-      return subsState[rk][pos] ? h.sub : h.main;
-    });
-    const {strong, issues} = getTeamSynergy(allHeroes, rk);
-    let synHtml = '';
-    if (strong.length) synHtml += `<div style="color:#80c060;margin-bottom:8px;">Strong Synergies: ${strong.join(' • ')}</div>`;
-    if (issues.length) synHtml += `<div style="color:#cc2222;">Potential Issues: ${issues.join(' • ')}</div>`;
-    if (!strong.length && !issues.length) synHtml = 'No major quirk interactions detected in this team.';
-    synergyEl.innerHTML = synHtml;
   }
+  function toggleSub(rk, pos) { if (!subsState[rk]) subsState[rk] = {}; subsState[rk][pos] = !subsState[rk][pos]; renderRegion(rk); }
+
+// ══════════════════════════════════════════════════════
+// DLC REGION TEAMS (3-team switcher)
+// ══════════════════════════════════════════════════════
+function renderDlcRegion(rk) {
+var region = DLC_REGIONS[rk];
+if (!region) return;
+var activeIdx = dlcActiveTeam[rk] || 0;
+var team = region.teams[activeIdx];
+// Render switcher buttons
+var switcherEl = document.getElementById(rk + ‘-switcher’);
+if (switcherEl) {
+var shtml = ‘’;
+region.teams.forEach(function(t, i) {
+shtml += ‘<button class="team-switch-btn' + (i === activeIdx ? ' active' : '') + '" onclick="switchDlcTeam(\'' + rk + '\',' + i + ')">’ + t.name + ‘</button>’;
+});
+switcherEl.innerHTML = shtml;
 }
+// Render team grid
+var grid = document.getElementById(rk + ‘-team’);
+if (!grid) return;
+var positions = [4,3,2,1];
+var posLabels = {4:‘Position 4 (Back)’,3:‘Position 3’,2:‘Position 2’,1:‘Position 1 (Front)’};
+var html = ‘’;
+if (team.desc) {
+html += ‘<div style="grid-column:1/-1;font-size:.82rem;color:var(--text-dim);font-style:italic;margin-bottom:8px;padding:8px 12px;background:rgba(197,160,89,.04);border:1px solid var(--border);">’ + team.desc + ‘</div>’;
+}
+positions.forEach(function(pos) {
+var slot = team.slots[pos];
+var skillsHtml = slot.skills.map(function(s) { return ‘<div style="font-size:.82rem;color:var(--text-dim);line-height:1.8;font-style:italic;">’ + s + ‘</div>’; }).join(’’);
+html += ‘<div>’
++ ‘<div class="pos-label">’ + posLabels[pos] + ‘</div>’
++ ‘<div class="hero-card">’
++ ‘<div class="hero-name">’ + slot.hero + ‘</div>’
++ ‘<div class="skills-list">’ + skillsHtml + ‘</div>’
++ ‘</div></div>’;
+});
+grid.innerHTML = html;
+}
+function switchDlcTeam(rk, idx) {
+dlcActiveTeam[rk] = idx;
+renderDlcRegion(rk);
+}
+
+// ══════════════════════════════════════════════════════
+// BOSSES
+// ══════════════════════════════════════════════════════
+function renderBosses() {
+var el = document.getElementById(‘boss-list’);
+var html = ‘’;
+BOSSES.forEach(function(b, i) {
+var mechHtml = b.mechanics.map(function(m) { return ‘<li>’ + m + ‘</li>’; }).join(’’);
+var teamsHtml = b.teams.map(function(t) { return ‘<div class="team-rec"><div class="team-rec-label">’ + t.label + ’ Team</div><div class="team-rec-heroes">’ + t.heroes + ‘</div></div>’; }).join(’’);
+var avoidHtml = b.avoid.map(function(a) { return ‘<li class="' + (a.indexOf('CRITICAL') >= 0 || a.indexOf('NEVER') >= 0 ? 'warn' : '') + '">’ + a + ‘</li>’; }).join(’’);
+html += ‘<div class="boss-card">’
+
+- ‘<div class="boss-header" onclick="toggleBoss(' + i + ')">’
+- ‘<div><div class="boss-name">’ + b.name + ‘</div><div class="boss-region">’ + b.region + ’ — ’ + b.tiers + ‘</div></div>’
+- ‘<div class="chevron" id="chev-' + i + '">▶</div></div>’
+- ‘<div class="boss-body" id="boss-body-' + i + '">’
+- ‘<div class="boss-section"><h4>Mechanics & Priority</h4><ul>’ + mechHtml + ‘</ul>’ + teamsHtml + ‘</div>’
+- ‘<div class="boss-section"><h4>Avoid / Watch For</h4><ul>’ + avoidHtml + ‘</ul></div>’
+- ‘</div></div>’;
+  });
+  el.innerHTML = html;
+  }
+  function toggleBoss(i) {
+  var body = document.getElementById(‘boss-body-’ + i);
+  var chev = document.getElementById(‘chev-’ + i);
+  var isOpen = body.classList.contains(‘open’);
+  document.querySelectorAll(’.boss-body’).forEach(function(b) { b.classList.remove(‘open’); });
+  document.querySelectorAll(’.chevron’).forEach(function(c) { c.classList.remove(‘open’); });
+  if (!isOpen) { body.classList.add(‘open’); chev.classList.add(‘open’); }
+  }
+
+// ══════════════════════════════════════════════════════
+// DARKEST DUNGEON RAIDS
+// ══════════════════════════════════════════════════════
+function renderDarkest() {
+var el = document.getElementById(‘dd-list’);
+var html = ‘’;
+DD_RUNS.forEach(function(r) {
+var keyHtml = r.key.map(function(k) { return ‘<li>’ + k + ‘</li>’; }).join(’’);
+var watchHtml = r.watch.map(function(w) { return ‘<li>’ + w + ‘</li>’; }).join(’’);
+html += ‘<div class="dd-card">’
+
+- ‘<div class="dd-card-title">’ + r.name + ‘</div>’
+- ‘<div style="color:var(--text-dim);font-style:italic;font-size:.82rem;margin-bottom:10px;">’ + r.desc + ‘</div>’
+- ‘<div class="dd-team"><div class="dd-team-label">Recommended Team</div><div class="dd-team-val">’ + r.team + ‘</div></div>’
+- ‘<div class="dd-grid">’
+- ‘<div class="dd-col"><h4>Key Tactics</h4><ul>’ + keyHtml + ‘</ul></div>’
+- ‘<div class="dd-col"><h4>Watch For</h4><ul>’ + watchHtml + ‘</ul></div>’
+- ‘</div></div>’;
+  });
+  el.innerHTML = html;
+  }
+
+// ══════════════════════════════════════════════════════
+// PROVISIONS
+// ══════════════════════════════════════════════════════
+function renderProvisions() {
+var p = PROVISIONS[activeProv];
+// For courtyard, force region to courtyard
+var regionKey = activeProv === ‘courtyard’ ? ‘courtyard’ : activeProvRegion;
+var items = p.regions[regionKey] || p.regions[Object.keys(p.regions)[0]];
+var html = ‘’;
+// Region sub-tabs (not for courtyard)
+if (activeProv !== ‘courtyard’) {
+var regBtns = [‘ruins’,‘weald’,‘warrens’,‘cove’].map(function(r) {
+return ‘<button class="prov-tab' + (activeProvRegion === r ? ' active' : '') + '" onclick="setProvRegion(\'' + r + '\')" style="text-transform:capitalize;">’ + r + ‘</button>’;
+}).join(’’);
+html += ‘<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">’ + regBtns + ‘</div>’;
+}
+var regionLabel = activeProv === ‘courtyard’ ? ‘Courtyard’ : regionKey.charAt(0).toUpperCase() + regionKey.slice(1);
+var rows = items.map(function(item) {
+return ‘<tr><td>’ + item[0] + ‘</td><td class="item-qty">’ + item[1] + ‘</td><td class="item-note">’ + item[2] + ‘</td></tr>’;
+}).join(’’);
+html += ‘<div class="prov-card" style="max-width:520px;">’
+
+- ‘<div class="prov-card-title">’ + regionLabel + ’ — ’ + p.rooms + ‘</div>’
+- ‘<table class="prov-table"><thead><tr><th>Item</th><th style="text-align:right;">Qty</th><th>Notes</th></tr></thead><tbody>’ + rows + ‘</tbody></table>’
+- ’<div class="prov-rule"><strong>Rule of Thumb:</strong> ’ + p.note + ‘</div></div>’;
+
+if (activeProv === ‘courtyard’) {
+html += ‘<div class="tips-box" style="margin-top:16px;"><h4>Courtyard Provisioning Notes</h4><ul>’
+
+- ‘<li>The Blood is the #1 priority — unused vials return to your stash, they are never wasted.</li>’
+- ‘<li>Food should be maxed at 36 — Courtyard runs are the longest in the game.</li>’
+- ‘<li>Use Shovels on Wine Crates to create Firewood — the ONLY way to camp here.</li>’
+- ‘<li>Torches boost ACC when used, and interact with Throbbing Cocoons (stress heal) and Thronging Hives (treasure).</li>’
+- ‘<li>Do NOT bring Skeleton Keys expecting better loot — they have no useful curio interaction here.</li>’
+- ‘<li>Medicinal Herbs on Forgotten Delicacies gives extra food to extend your run.</li>’
+- ‘<li>The Farmstead requires NO provisions — it is pure combat with curio rooms between waves.</li>’
+- ‘</ul></div>’;
+  } else {
+  html += ‘<div class="tips-box" style="margin-top:16px;"><h4>Universal Rules</h4><ul>’
+- ‘<li>Torch: 4 short / 8 medium / 12 long - never go dark early</li>’
+- ‘<li>Food: always bring more than the minimum - hungry heroes take HP damage</li>’
+- ‘<li>Antivenom is the most underrated supply - triple up in Warrens</li>’
+- ‘<li>Shovels prevent obstacle penalties - at least 1 per expedition</li>’
+- ‘<li>Holy Water at Ruins curios prevents most negative outcomes</li>’
+- ‘</ul></div>’;
+  }
+  document.getElementById(‘prov-content’).innerHTML = html;
+  }
+  function setProvRegion(r) { activeProvRegion = r; renderProvisions(); }
+
+// ══════════════════════════════════════════════════════
+// ROSTER
+// ══════════════════════════════════════════════════════
+function renderRoster() {
+var fc = document.getElementById(‘filterClass’).value;
+var fs = document.getElementById(‘filterStatus’).value;
+var grid = document.getElementById(‘rosterGrid’);
+var heroes = roster.filter(function(h) { return (!fc || h.cls === fc) && (!fs || h.status === fs); });
+if (!heroes.length) { grid.innerHTML = ‘<div style="color:var(--text-dim);font-style:italic;grid-column:1/-1;padding:20px 0;">No heroes recorded. Add your first hero above.</div>’; return; }
+grid.innerHTML = heroes.map(function(h) {
+var sc = stressColor(h.stress);
+var sp = Math.min(100, h.stress / 2);
+var posQHtml = (h.posQ||[]).map(function(q) { return ‘<span class="quirk-tag quirk-pos">’ + q + ‘</span>’; }).join(’’);
+var negQHtml = (h.negQ||[]).map(function(q) { return ‘<span class="quirk-tag quirk-neg">’ + q + ‘</span>’; }).join(’’);
+var idx = roster.indexOf(h);
+return ‘<div class="roster-card' + (h.status==='dead'?' dead':'') + (h.status==='retired'?' retired':'') + '">’
+
+- ‘<div class="rcard-level">Lv’ + h.level + ‘</div>’
+- ‘<div class="rcard-name">’ + h.name + ‘</div>’
+- ‘<div class="rcard-class">’ + h.cls + ‘</div>’
+- ‘<div style="font-size:.7rem;color:var(--text-dim);margin-top:4px;text-transform:uppercase;letter-spacing:1px;">’ + h.status + ‘</div>’
+- ‘<div style="margin-top:8px;font-size:.72rem;"><div style="display:flex;justify-content:space-between;color:var(--text-dim);">Stress<span style="color:' + sc + '">’ + h.stress + ‘</span></div>’
+- ‘<div class="stress-bar"><div class="stress-fill" style="width:' + sp + '%;background:' + sc + '"></div></div></div>’
+- ‘<div class="rcard-quirks">’ + posQHtml + negQHtml + ‘</div>’
+- ‘<button class="rcard-del" onclick="deleteHero(' + idx + ')">✕</button></div>’;
+  }).join(’’);
+  }
+  function deleteHero(i) { roster.splice(i,1); saveRoster(); renderRoster(); }
+  function initRoster() {
+  var cf = document.getElementById(‘filterClass’);
+  var cs = document.getElementById(‘newClass’);
+  CLASSES.forEach(function(c) { cf.innerHTML += ‘<option value="'+c+'">’+c+’</option>’; cs.innerHTML += ‘<option value="'+c+'">’+c+’</option>’; });
+  cf.addEventListener(‘change’, renderRoster);
+  document.getElementById(‘filterStatus’).addEventListener(‘change’, renderRoster);
+  document.getElementById(‘addHeroBtn’).addEventListener(‘click’, function() { document.getElementById(‘addHeroForm’).classList.toggle(‘open’); });
+  document.getElementById(‘cancelHero’).addEventListener(‘click’, function() { document.getElementById(‘addHeroForm’).classList.remove(‘open’); });
+  document.getElementById(‘clearRoster’).addEventListener(‘click’, function() { if (confirm(‘Clear all heroes?’)) { roster=[]; saveRoster(); renderRoster(); } });
+  document.getElementById(‘saveHero’).addEventListener(‘click’, function() {
+  var posQ = document.getElementById(‘newPosQ’).value.split(’,’).map(function(s){return s.trim();}).filter(Boolean);
+  var negQ = document.getElementById(‘newNegQ’).value.split(’,’).map(function(s){return s.trim();}).filter(Boolean);
+  roster.push({ name: document.getElementById(‘newName’).value.trim()||‘Unnamed’, cls: document.getElementById(‘newClass’).value, level: document.getElementById(‘newLevel’).value, stress: parseInt(document.getElementById(‘newStress’).value)||0, status: document.getElementById(‘newStatus’).value, posQ: posQ, negQ: negQ });
+  saveRoster(); renderRoster();
+  document.getElementById(‘addHeroForm’).classList.remove(‘open’);
+  document.getElementById(‘newName’).value=’’; document.getElementById(‘newStress’).value=‘0’; document.getElementById(‘newPosQ’).value=’’; document.getElementById(‘newNegQ’).value=’’;
+  });
+  renderRoster();
+  }
+
+// ══════════════════════════════════════════════════════
+// QUIRKS
+// ══════════════════════════════════════════════════════
+var QUIRK_CATS = {
+general:‘General Stats’,conditional:‘Conditional’,light:‘Light-Related’,region:‘Region-Specific’,monster:‘Monster-Specific’,resist:‘Resistances’,curio:‘Curio Triggers’,town:‘Town Behaviour’
+};
+var REGION_COLORS = {ruins:’#c0a020’,weald:’#507a20’,warrens:’#a02040’,cove:’#5090c0’};
+function regionTag(r) { var col = REGION_COLORS[r]||’#888’; return ‘<span style="font-size:.6rem;padding:1px 5px;border:1px solid '+col+';color:'+col+';margin-right:3px;">’+r+’</span>’; }
+function renderQuirks() {
+function renderGroup(quirks, isPos) {
+var byCat = {};
+quirks.forEach(function(q) { if (!byCat[q.category]) byCat[q.category]=[]; byCat[q.category].push(q); });
+var out = ‘’;
+Object.keys(QUIRK_CATS).forEach(function(key) {
+var group = byCat[key];
+if (!group) return;
+var label = QUIRK_CATS[key];
+var cards = group.map(function(q) {
+var bonusR = (q.synergy && q.synergy.bonusRegions) || [];
+var penR = (q.synergy && q.synergy.penaltyRegions) || [];
+var kc = q.keep===‘Lock’?‘keep-yes’:q.keep===‘Purge’?‘keep-no’:‘keep-situational’;
+var syn = ‘’;
+if (bonusR.length || penR.length) {
+syn = ‘<div style="margin-top:5px;">’ + bonusR.map(regionTag).join(’’) + penR.map(function(r){return ‘<span style="font-size:.6rem;padding:1px 5px;border:1px solid var(--red-dim);color:var(--red-dim);margin-right:3px;">\u2715’+r+’</span>’;}).join(’’) + ‘</div>’;
+}
+return ‘<div class="quirk-entry '+(isPos?'pos':'neg')+'">’
++’<div class="quirk-keep-label '+kc+'">’+q.keep+’</div>’
++’<div class="quirk-entry-name">’+q.name+’</div>’
++’<div class="quirk-entry-effect">’+q.effect+’</div>’
++syn+’</div>’;
+}).join(’’);
+out += ‘<div style="margin-bottom:18px;">’
++’<div style="font-size:.68rem;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--border2);padding-bottom:5px;margin-bottom:8px;">’+label+’</div>’
++’<div class="quirk-grid">’+cards+’</div></div>’;
+});
+return out;
+}
+document.getElementById(‘pos-quirks’).innerHTML = renderGroup(POS_QUIRKS, true);
+document.getElementById(‘neg-quirks’).innerHTML = renderGroup(NEG_QUIRKS, false);
+}
+
+// ══════════════════════════════════════════════════════
+// ESTATE
+// ══════════════════════════════════════════════════════
+function renderEstate() {
+var nameEl = document.getElementById(‘estateName’);
+if (nameEl && !nameEl.value) nameEl.value = localStorage.getItem(‘dd-estate-name’) || ‘’;
+var total = 0, maxT = 0;
+BUILDINGS.forEach(function(b) { b.upgrades.forEach(function(u,ui) { total += getUpgradeLevel(b.id,ui); maxT += u.maxLevel; }); });
+var pct = Math.round((total/maxT)*100);
+document.getElementById(‘estate-summary’).innerHTML =
+‘<div class="estate-stat"><div class="estate-stat-val">’+total+’</div><div class="estate-stat-label">Upgrades Done</div></div>’
++’<div class="estate-stat"><div class="estate-stat-val">’+maxT+’</div><div class="estate-stat-label">Total</div></div>’
++’<div class="estate-stat"><div class="estate-stat-val">’+pct+’%</div><div class="estate-stat-label">Completion</div></div>’
++’<div class="estate-stat"><div class="estate-stat-val">’+(maxT-total)+’</div><div class="estate-stat-label">Remaining</div></div>’;
+var html = ‘’;
+BUILDINGS.forEach(function(b) {
+var allMaxed = b.upgrades.every(function(u,ui){ return getUpgradeLevel(b.id,ui)>=u.maxLevel; });
+var upgradeHtml = ‘’;
+b.upgrades.forEach(function(u,ui) {
+var lvl = getUpgradeLevel(b.id, ui);
+var isMax = lvl >= u.maxLevel;
+var pips = ‘’;
+for (var pi=0; pi<u.maxLevel; pi++) {
+var filled = pi < lvl;
+var isLast = pi === u.maxLevel - 1;
+var cls = filled ? (isLast && isMax ? ‘maxpip’ : ‘filled’) : ‘’;
+var ttl = ‘Lvl ‘+(pi+1)+’: ‘+(u.effects[pi]||’’);
+pips += ‘<div class="pip '+cls+'" onclick="pipClick(\''+b.id+'\','+ui+','+(pi+1)+','+u.maxLevel+')" title="'+ttl+'"></div>’;
+}
+var effectText = u.effects[Math.max(0,lvl-1)] || ‘’;
+var nextDiv = !isMax ? ‘<div class="building-cost">Next: Lvl ‘+(lvl+1)+’</div>’ : ‘’;
+upgradeHtml += ‘<div class="upgrade-row">’
++’<span class="upgrade-label">’+u.label+’</span>’
++’<div class="upgrade-pips">’+pips+’</div>’
++’<span style="font-size:.7rem;color:'+(isMax?'var(--gold)':'var(--text-dim)')+';">’+lvl+’/’+u.maxLevel+’</span>’
++’</div>’
++’<div class="building-effect">’+effectText+nextDiv+’</div>’;
+});
+html += ‘<div class="building-card'+(allMaxed?' maxed':'')+'">’
++’<div class="building-header">’
++’<span class="building-icon">’+b.icon+’</span>’
++’<span class="building-name">’+b.name+’</span>’
++(allMaxed?’<span class="building-maxed-badge">MAXED</span>’:’’)
++’</div>’
++’<div class="upgrade-rows">’+upgradeHtml+’</div></div>’;
+});
+document.getElementById(‘estate-grid’).innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+// BUILD ROUTE
+// ══════════════════════════════════════════════════════
+var STRATEGY_WEIGHTS = {
+balanced: {survival:1.0,stress:1.0,speed:1.0,economy:0.8,darkest:1.0,quirks:0.9},
+survival: {survival:2.0,stress:1.8,speed:0.7,economy:0.5,darkest:0.9,quirks:1.2},
+speed:    {survival:0.8,stress:0.8,speed:2.0,economy:0.7,darkest:1.2,quirks:0.6},
+economy:  {survival:0.8,stress:0.9,speed:0.8,economy:2.5,darkest:0.7,quirks:0.8},
+darkest:  {survival:1.2,stress:1.0,speed:1.5,economy:0.6,darkest:3.0,quirks:1.0}
+};
+function weekUrgency(week, tag) {
+if (week<=10) { if(tag===‘survival’)return 1.6; if(tag===‘stress’)return 1.5; if(tag===‘economy’)return 1.4; if(tag===‘speed’)return 1.2; }
+else if (week<=25) { if(tag===‘darkest’)return 1.4; if(tag===‘speed’)return 1.3; if(tag===‘quirks’)return 1.2; }
+else { if(tag===‘darkest’)return 2.0; }
+return 1.0;
+}
+function computeRoute() {
+var week = parseInt(document.getElementById(‘routeWeek’).value)||1;
+var strategy = document.getElementById(‘routeStrategy’).value;
+var count = parseInt(document.getElementById(‘routeCount’).value)||10;
+var weights = STRATEGY_WEIGHTS[strategy]||STRATEGY_WEIGHTS.balanced;
+var candidates = [];
+BUILDINGS.forEach(function(b) {
+b.upgrades.forEach(function(u,ui) {
+var lvl = getUpgradeLevel(b.id,ui);
+if (lvl>=u.maxLevel) return;
+var score = u.priority * 10;
+u.tags.forEach(function(tag) { score *= (weights[tag]||1.0) * weekUrgency(week,tag); });
+score *= (1/(lvl+1));
+var tier = score>=60?‘critical’:score>=35?‘high’:score>=18?‘medium’:‘low’;
+candidates.push({bName:b.name,bIcon:b.icon,uLabel:u.label,nextLevel:lvl+1,maxLevel:u.maxLevel,effect:u.effects[lvl]||’’,score:Math.round(score),tier:tier});
+});
+});
+candidates.sort(function(a,b){return b.score-a.score;});
+var shown = count===999 ? candidates : candidates.slice(0,count);
+var crit = candidates.filter(function(c){return c.tier===‘critical’;}).length;
+document.getElementById(‘route-summary’).innerHTML =
+‘<div class="route-stat"><div class="route-stat-val">’+candidates.length+’</div><div class="route-stat-label">Available</div></div>’
++’<div class="route-stat"><div class="route-stat-val">’+crit+’</div><div class="route-stat-label">Critical</div></div>’
++’<div class="route-stat"><div class="route-stat-val">’+shown.length+’</div><div class="route-stat-label">Showing</div></div>’
++’<div class="route-stat"><div class="route-stat-val">’+candidates.filter(function(c){return c.tier===‘high’||c.tier===‘critical’;}).length+’</div><div class="route-stat-label">High+</div></div>’;
+if (!shown.length) { document.getElementById(‘route-queue’).innerHTML=’<div style="color:var(--gold);font-style:italic;padding:20px;text-align:center;">ALL BUILDINGS MAXED</div>’; return; }
+var qhtml = shown.map(function(c,i) {
+return ‘<div class="queue-item priority-'+c.tier+'">’
++’<div class="queue-rank">’+(i+1)+’</div>’
++’<div><div class="queue-building">’+c.bIcon+’ ‘+c.bName+’</div>’
++’<div class="queue-upgrade">’+c.uLabel+’ → Lvl ‘+c.nextLevel+’/’+c.maxLevel+’</div>’
++’<div class="queue-reason">’+c.effect+’</div></div>’
++’<div><div class="priority-pill pill-'+c.tier+'">’+c.tier+’</div>’
++’<div style="font-size:.7rem;color:var(--text-dim);margin-top:4px;">’+c.score+’</div></div>’
++’</div>’;
+}).join(’’);
+var tips = {balanced:‘Balanced weights all categories equally.’,survival:‘Survival: Abbey/Tavern stress, roster size, armor first.’,speed:‘Speed: Guild skill tiers and Blacksmith weapons.’,economy:‘Economy: Nomad Wagon rates and heirloom income.’,darkest:‘Darkest prep: Champion weapon/skill tiers and Survivalist.’};
+var earlyNote = week<=8 ? ’ Early game: stress slots and roster size are most urgent.’ : ‘’;
+document.getElementById(‘route-queue’).innerHTML = qhtml + ‘<div class="route-tip"><strong>Strategy:</strong> ‘+(tips[strategy]||’’)+earlyNote+’</div>’;
+}
+
+// ══════════════════════════════════════════════════════
+// TAB SWITCHING
+// ══════════════════════════════════════════════════════
+function switchTab(id) {
+document.querySelectorAll(’.nav-tab’).forEach(function(b){b.classList.toggle(‘active’,b.dataset.tab===id);});
+document.querySelectorAll(’.tab-pane’).forEach(function(p){p.classList.toggle(‘active’,p.id===‘tab-’+id);});
+// Base regions always re-render
+if ([‘ruins’,‘weald’,‘warrens’,‘cove’].indexOf(id) >= 0) {
+renderRegion(id);
+initialized[id] = true;
+return;
+}
+// DLC regions always re-render
+if ([‘courtyard’,‘farmstead’].indexOf(id) >= 0) {
+renderDlcRegion(id);
+initialized[id] = true;
+return;
+}
+if (!initialized[id]) {
+if      (id===‘bosses’)     renderBosses();
+else if (id===‘darkest’)    renderDarkest();
+else if (id===‘provisions’) renderProvisions();
+else if (id===‘roster’)     initRoster();
+else if (id===‘quirks’)     renderQuirks();
+else if (id===‘estate’)     renderEstate();
+else if (id===‘buildroute’) { renderEstate(); computeRoute(); }
+initialized[id] = true;
+}
+}
+document.getElementById(‘mainNav’).addEventListener(‘click’, function(e) {
+var btn = e.target.closest(’[data-tab]’);
+if (btn) switchTab(btn.dataset.tab);
+});
+document.addEventListener(‘click’, function(e) {
+var pt = e.target.closest(’.prov-tab[data-prov]’);
+if (pt) { document.querySelectorAll(’.prov-tab[data-prov]’).forEach(function(b){b.classList.remove(‘active’);}); pt.classList.add(‘active’); activeProv=pt.dataset.prov; renderProvisions(); }
+});
+// Init default tab
+renderRegion(‘ruins’);
+initialized[‘ruins’] = true;
+
+// ══════════════════════════════════════════════════════
+// DATA EXPORT / IMPORT
+// ══════════════════════════════════════════════════════
+function exportData() {
+var data = { roster: roster, estate: estateState, name: localStorage.getItem(‘dd-estate-name’)||’’, timestamp: new Date().toISOString() };
+var str = JSON.stringify(data, null, 2);
+if (navigator.clipboard && navigator.clipboard.writeText) {
+navigator.clipboard.writeText(str).then(function() { alert(‘Copied to clipboard! Paste into a note to save.’); }).catch(function() { fallbackCopy(str); });
+} else { fallbackCopy(str); }
+}
+function fallbackCopy(str) {
+var ta = document.createElement(‘textarea’);
+ta.value = str; ta.style.position=‘fixed’; ta.style.opacity=‘0’;
+document.body.appendChild(ta); ta.select();
+try { document.execCommand(‘copy’); alert(‘Copied to clipboard!’); } catch(e) { alert(‘Copy failed. Use Download instead.’); }
+document.body.removeChild(ta);
+}
+function downloadData() {
+var data = { roster: roster, estate: estateState, name: localStorage.getItem(‘dd-estate-name’)||’’, timestamp: new Date().toISOString() };
+var str = JSON.stringify(data, null, 2);
+var blob = new Blob([str], {type:‘application/json’});
+var url = URL.createObjectURL(blob);
+var a = document.createElement(‘a’);
+a.href = url; a.download = ‘dd-estate-save.json’; a.click();
+URL.revokeObjectURL(url);
+}
+function importData() {
+var json = document.getElementById(‘importArea’).value.trim();
+if (!json) { alert(‘Nothing to import.’); return; }
+try {
+var data = JSON.parse(json);
+if (data.roster) { roster = data.roster; saveRoster(); }
+if (data.estate) { estateState = data.estate; saveEstate(); }
+if (data.name) { localStorage.setItem(‘dd-estate-name’, data.name); }
+alert(‘Import successful! Reload the tabs to see your data.’);
+initialized = {};
+document.getElementById(‘importArea’).value = ‘’;
+renderEstate();
+renderRoster();
+} catch(e) { alert(‘Invalid JSON. Please check and try again.’); }
+}
+function nukeAll() {
+if (confirm(‘This will permanently delete all saved data. Are you sure?’)) {
+localStorage.removeItem(‘dd-roster’);
+localStorage.removeItem(‘dd-estate’);
+localStorage.removeItem(‘dd-estate-name’);
+roster = []; estateState = {};
+alert(‘All data cleared.’);
+initialized = {};
+renderEstate();
+if (document.getElementById(‘rosterGrid’)) renderRoster();
+}
+}
+</script>
+
+</body>
+</html>
